@@ -20,4 +20,4 @@ To examine the site-level environmental and biophysical predictors of wrack biom
 | Site          | Aspect         | NA                        | Planet Satellite Imagery | Beach aspect (º)                                                                                                         |
 | Site          | Wave Exposure  | Protected, Semi-protected | Alaska Shorezone         | "Biological wave exposure" for alaska shorezone unit associated with survey site                                         |
 
-: Table 1. Biophysical and environmental predictors used in candidate models.
+Table 1. Biophysical and environmental predictors used in candidate models.
