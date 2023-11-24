@@ -11,3 +11,5 @@
 packages<- c("tidyverse", "janitor", "readxl")
 
 pacman::p_load(packages, character.only = TRUE)
+
+rm(packages)
