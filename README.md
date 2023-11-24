@@ -1,4 +1,4 @@
-# Rockweed Wrack Subsidies to Beach Food Webs
+# Rockweed Wrack Subsidies to Upper Intertidal Food Webs
 
 *Gerraty, FD (fgerraty\@ucsc.edu; frankiegerraty\@gmail.com)*
 

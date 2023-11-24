@@ -55,8 +55,18 @@ wrack_zonation <- read_excel("data/raw/Wrack_Biomass_Raw_Data.xlsx",
   summarise(biomass = sum(wrack_mass_per_transect), .groups = "drop")
 
 
-# PART 1C: "Wrack Biomass" Dataset ---------------------------------------------
+# PART 1D: "Invertebrate" Dataset ---------------------------------------------
 
 #Import and clean "invertebrate" dataset, which includes all invertebrate data
   
 #NOTE: Waiting until final samples are complete
+
+
+####################################
+# PART 2: Export Processed Data ####
+####################################
+
+write_csv(sites, "data/processed/sites.csv")
+write_csv(wrack_cover, "data/processed/wrack_cover.csv")
+write_csv(wrack_zonation, "data/processed/wrack_zonation.csv")
+#write_csv(invertebrates, "data/processed/invertebrates.csv")
