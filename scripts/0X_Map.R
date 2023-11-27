@@ -106,11 +106,6 @@ southeast <- ggplot() +
            expand = FALSE
            ,label_axes = "-NE-" #sets which axes are labeled, top(blank), right, bottom, left (blank)
   ) +
-  #Label countries - REMOVE ?????????
-  annotate(geom = "text", x = -132.9, y = 58.6, label = "Canada", 
-           fontface = "italic", color = "black", size = 3.5)+
-  annotate(geom = "text", x = -134.3, y = 58.6, label = "Alaska", 
-           fontface = "italic", color = "black", size = 3.5)+
   scale_y_continuous(position = "right", breaks = c(55,56,57,58,59)) + #sets y labels
   scale_x_continuous(breaks=c(-133, -134, -135, -136, -137))+ #sets x labels 
   #Add scale and north arrow
@@ -134,7 +129,7 @@ sitka <- ggplot(data=alaska_coastline)+
   geom_sf(fill = "antiquewhite") +
   geom_point(data = site_biomass, #places study sites on the map, colored by value "wrack_biomass"
              mapping = aes(longitude, latitude, 
-                           fill = log(mean_biomass)), 
+                           fill = log10(mean_biomass)), 
              size = 3,
              color= "black",
              pch=21)+
@@ -154,7 +149,7 @@ sitka <- ggplot(data=alaska_coastline)+
            expand = FALSE)+
   scale_x_continuous(breaks=c(-135.3, -135.35, -135.4))+ # Sets the x (longitude) labels 
   theme_bw()+
-  labs(fill= "Wrack\nBiomass\n ") +
+  labs(fill= "Wrack\nBiomass\n(log10(g))") +
   theme(legend.position = c(.95, .97),
         legend.justification = c("right", "top"),
         axis.title.x = element_blank(),
@@ -178,19 +173,19 @@ sitka <- ggplot(data=alaska_coastline)+
 #Export maps to "output/extra_figures" to be compiled in illustrator
 
 #Export alaska locator map as high-quality PDF
-pdf("~/Desktop/Alaska.pdf", 
+pdf("output/extra_figures/Alaska.pdf", 
     width = 2, height = 2)
 plot(alaska)
 dev.off()
 
 #Export Southeast Map 
-pdf("~/Desktop/Southeast.pdf", 
+pdf("output/extra_figures/Southeast.pdf", 
     width = 4, height = 5)
 plot(southeast)
 dev.off()
 
 #Export sitka map as high-quality PDF
-pdf("~/Desktop/Sitka.pdf", 
+pdf("output/extra_figures/Sitka.pdf", 
     width = 4, height = 5)
 plot(sitka)
 dev.off()
