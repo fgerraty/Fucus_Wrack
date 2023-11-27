@@ -22,7 +22,7 @@ sites <- read_excel("data/raw/sites.xlsx") %>%
          percent_granule = rowSums(pick(pt1_percent_granule:pt10_percent_granule))/1000,
          percent_sand = rowSums(pick(pt1_percent_sand:pt10_percent_sand))/1000) %>% 
   #Keep relevant summarized columns and order variables by type (site/survey metadata, static environmental variables, dynamic environmental variables)
-  dplyr::select(site:slope_mean, percent_boulder:percent_sand, wind_direction:human_activity)
+  dplyr::select(site:slope_mean, percent_boulder:percent_sand, wind_direction:high_tide)
 
 
 # PART 1B: "Wrack Cover" Dataset -----------------------------------------------
@@ -68,5 +68,6 @@ wrack_zonation <- read_excel("data/raw/Wrack_Biomass_Raw_Data.xlsx",
 
 write_csv(sites, "data/processed/sites.csv")
 write_csv(wrack_cover, "data/processed/wrack_cover.csv")
+write_csv(wrack_biomass, "data/processed/wrack_biomass.csv")
 write_csv(wrack_zonation, "data/processed/wrack_zonation.csv")
 #write_csv(invertebrates, "data/processed/invertebrates.csv")
