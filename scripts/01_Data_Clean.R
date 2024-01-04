@@ -63,7 +63,7 @@ invertebrates <- read_csv("data/raw/Invertebrate_Raw_Data.csv") %>%
   clean_names()
 
 ####################################
-# PART 3: Export Processed Data ####
+# PART 2: Export Processed Data ####
 ####################################
 
 write_csv(sites, "data/processed/sites.csv")
