@@ -47,22 +47,7 @@ plot(f1)
 qqnorm(resid(f1))
 
 
-
-
-
-
-
-
-
-
-
-fun <- function(x) -11.4441 + 1.2403 * x 
-
-
-
-
-
-wrack_inverts_plot <- wrack_inverts %>% 
+f1_plot_df1 <- wrack_inverts %>% 
   group_by(site) %>% 
   mutate(mean_log_wrack = mean(log_wrack_biomass), 
          se_log_wrack = sd(log_wrack_biomass)/sqrt(3),
@@ -72,11 +57,63 @@ wrack_inverts_plot <- wrack_inverts %>%
 
 
 
-ggplot(wrack_inverts_summary, aes(x=mean_log_wrack, y=mean_log_invert))+
+ggplot(f1_plot_df1, aes(x=mean_log_wrack, y=mean_log_invert))+
   geom_point()+
-  geom_function(fun = fun)+
-  geom_errorbar(aes(ymin = mean_log_invert-se_log_invert, ymax = mean_log_invert+se_log_invert))+
-  geom_errorbar(aes(xmin = mean_log_wrack-se_log_wrack, xmax = mean_log_wrack+se_log_wrack))+
-  lims(x = c(0,13))
+  geom_line(data = f1_plot_df2, 
+            aes(x=log_wrack_biomass, y=log_invert_biomass))+
+  geom_errorbar(aes(ymin = mean_log_invert-se_log_invert, 
+                    ymax = mean_log_invert+se_log_invert))+
+  geom_errorbar(aes(xmin = mean_log_wrack-se_log_wrack, 
+                    xmax = mean_log_wrack+se_log_wrack))+
+  geom_ribbon(data = f1_plot_df2, 
+              mapping = aes(x=log_wrack_biomass, 
+                            y = log_invert_biomass, 
+                            ymin = mSE, ymax = pSE),
+              alpha=0.3,linetype=0)+
+  theme_classic()+
+  labs(y = "Invertebrate Biomass (g) (log scale)", x = "Wrack Biomass (g) (log scale)")+
+  scale_y_continuous(
+    breaks = c(-6.50229, -4.199705, -1.89712, 0.4054651, 2.70805, 5.010635), 
+    labels = c( .0015, .015, .15, 1.5,15,150))
+
+
+#Create dataframe for generating a line and error bar representing model f1
+f1_plot_df2=data.frame(log_wrack_biomass=seq(0,12,.1), site = "Totem")
+#predict probability of scavenging using the model
+f1_plot_df2$log_invert_biomass <- predict(f1,
+                                          newdata=f1_plot_df2,
+                                          type="response", 
+                                          re.form=NA) #added extra step for mixed effects models
+
+#Code for generating confidence intervals for lmer model. 
+
+#function for bootstrapping
+pf1 = function(fit) {   predict(fit, f1_plot_df2) } 
+#bootstrap to estimate uncertainty in predictions
+bb=bootMer(f1,nsim=1000,FUN=pf1,seed=999) 
+#Calculate SEs from bootstrap samples on link scale
+f1_plot_df2$SE=apply(bb$t, 2, sd) 
+#predicted mean + 1 SE on response scale
+f1_plot_df2$pSE=f1_plot_df2$log_invert_biomass+f1_plot_df2$SE
+# predicted mean - 1 SE on response scale
+f1_plot_df2$mSE=f1_plot_df2$log_invert_biomass-f1_plot_df2$SE
+
+
+
+#Generate ggplot
+temporal_scav_plot2 <- ggplot(temporal_df2, aes(x=percent_developed_1km, y=hours_to_full_scavenge))+ 
+  geom_point(colour = "black", alpha = .4, size=4, shape=16)+
+  geom_ribbon(data=g4_plot,
+              aes(x=percent_developed_1km,
+                  ymin=mSE,ymax=pSE),
+              alpha=0.3,linetype=0)+
+  geom_line(data=g4_plot,aes(x=percent_developed_1km,y=hours_to_full_scavenge))+
+  theme_few()+
+  labs(y = "Hours Until Carcass Removal", x="")+
+  scale_x_continuous(breaks = c(0, 0.25, 0.50, 0.75, 1), labels = c(0,25,50,75,100))+
+  theme(axis.title.y = element_text(size = 20))
+
+
+
   
   
