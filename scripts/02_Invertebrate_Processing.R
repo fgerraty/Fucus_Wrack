@@ -127,8 +127,13 @@ TRTR_pred$mean <- prop$summary[,2] #Pull mean from model predictions
 TRTR_pred$lcl <- prop$summary[,5] #Pull lower confidence level from model predictions
 TRTR_pred$ucl <- prop$summary[,6] #Pull upper confidence level from model predictions
 
+#Generate TRTR equation label
 
-ggplot(TRTR, aes(x=length, y=mass))+
+TRTR_label <- paste0("Mass = 0.0000274 * Length^{3}")
+
+
+
+TRTR_plot <- ggplot(TRTR, aes(x=length, y=mass))+
   geom_point(color = "grey70", alpha = .7, shape = 16)+
   geom_line(data = TRTR_pred, aes(x = length, y = mean), color= "black") +
   geom_ribbon(data = TRTR_pred, 
@@ -137,6 +142,7 @@ ggplot(TRTR, aes(x=length, y=mass))+
   theme_classic()+
   labs(x="Length (mm)", y= "Mass (g)")
 
+TRTR_plot
 
 
 #Generate ISOPOD length-mass relationship curve 
@@ -150,7 +156,7 @@ ISOPOD_pred$ucl <- prop$summary[,6] #Pull upper confidence level from model pred
 
 
 
-ggplot(ISOPOD, aes(x=length, y=mass))+
+ISOPOD_plot <- ggplot(ISOPOD, aes(x=length, y=mass))+
   geom_point(color = "grey70", alpha = .7)+
   geom_line(data = ISOPOD_pred, aes(x = length, y = mean), color= "black") +
   geom_ribbon(data = ISOPOD_pred, 
@@ -158,3 +164,16 @@ ggplot(ISOPOD, aes(x=length, y=mass))+
               fill= "grey10", alpha = .5)+
   theme_classic()+
   labs(x="Length (mm)", y= "Mass (g)")
+ISOPOD_plot
+
+
+
+# Save plots
+ggsave("output/supp_figures/TRTR_length_mass.png", 
+       TRTR_plot,
+       width = 8, height = 5, units = "in")
+
+ggsave("output/supp_figures/ISOPOD_length_mass.png", 
+       ISOPOD_plot,
+       width = 8, height = 5, units = "in")
+

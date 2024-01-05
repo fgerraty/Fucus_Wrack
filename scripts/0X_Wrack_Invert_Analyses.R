@@ -77,7 +77,8 @@ f1_plot_df2$mSE=f1_plot_df2$log_invert_biomass-f1_plot_df2$SE
 
 
 
-ggplot(f1_plot_df1, aes(x=mean_log_wrack, y=mean_log_invert))+
+f1_plot <- ggplot(f1_plot_df1, 
+                  aes(x=mean_log_wrack, y=mean_log_invert))+
   geom_point()+
   geom_line(data = f1_plot_df2, 
             aes(x=log_wrack_biomass, y=log_invert_biomass))+
@@ -91,7 +92,8 @@ ggplot(f1_plot_df1, aes(x=mean_log_wrack, y=mean_log_invert))+
                             ymin = mSE, ymax = pSE),
               alpha=0.3,linetype=0)+
   theme_classic()+
-  labs(y = "Invertebrate Biomass (g) (log scale)", x = "Wrack Biomass (kg) (log scale)")+
+  labs(y = "Invertebrate Biomass (g)\n(ticks placed on log scale)", 
+       x = "Wrack Biomass (kg)\n(ticks placed on log scale)")+
   scale_y_continuous(
     breaks = c(-6.50229, -4.199705, -1.89712, 0.4054651, 2.70805, 5.010635), 
     labels = c( .0015, .015, .15, 1.5,15,150))+
@@ -99,4 +101,9 @@ ggplot(f1_plot_df1, aes(x=mean_log_wrack, y=mean_log_invert))+
     breaks = c(5.010635, 7.31322, 9.615805, 11.91839), 
     labels = c(.15, 1.5, 15, 150))+
   coord_cartesian(xlim = c(3, 12), ylim = c(-10, 6))
-  
+f1_plot
+
+#Save plot
+ggsave("output/main_figures/wrack_invert_biomass.png", 
+       f1_plot,
+       width = 8, height = 5, units = "in")
