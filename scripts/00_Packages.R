@@ -8,7 +8,7 @@
 # Part 1: Load Packages --------------------------------------------------
 
 # Load packages
-packages<- c("tidyverse", "janitor", "readxl", "glmmTMB", "propagate","viridis", "sf", "rnaturalearth", "rnaturalearthdata", "ggspatial")
+packages<- c("tidyverse", "janitor", "readxl", "lme4", "propagate","viridis", "sf", "rnaturalearth", "rnaturalearthdata", "ggspatial")
 
 pacman::p_load(packages, character.only = TRUE)
 
