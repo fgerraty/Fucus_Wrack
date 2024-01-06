@@ -9,6 +9,8 @@
 # PART 1: Import and Combine Data ##############
 ################################################
 
+sites <- read_csv("data/processed/sites.csv")
+
 wrack_biomass <- read_csv("data/processed/wrack_biomass.csv") %>% 
   group_by(site, transect_number) %>% 
   summarise(wrack_biomass = sum(biomass))
@@ -46,13 +48,22 @@ summary(f1)
 plot(f1)
 qqnorm(resid(f1))
 
+#Need to check with Pete about this ################
+library(ggpubr)
+ggdensity(wrack_inverts$log_invert_biomass, 
+          main = "Density plot of wrack mass",
+          xlab = "Wrack mass")
+shapiro.test(wrack_inverts$log_invert_biomass)
+#####################################################
+
 
 f1_plot_df1 <- wrack_inverts %>% 
   group_by(site) %>% 
   mutate(mean_log_wrack = mean(log_wrack_biomass), 
          se_log_wrack = sd(log_wrack_biomass)/sqrt(3),
          mean_log_invert = mean(log_invert_biomass), 
-         se_log_invert = sd(log_invert_biomass)/sqrt(3))
+         se_log_invert = sd(log_invert_biomass)/sqrt(3)) %>% 
+  left_join(., sites[,c("site", "beach_width")], by = "site")
 
 #Create dataframe for generating a line and error bar representing model f1
 f1_plot_df2=data.frame(log_wrack_biomass=seq(0,12,.1), site = "Totem")
@@ -79,31 +90,46 @@ f1_plot_df2$mSE=f1_plot_df2$log_invert_biomass-f1_plot_df2$SE
 
 f1_plot <- ggplot(f1_plot_df1, 
                   aes(x=mean_log_wrack, y=mean_log_invert))+
-  geom_point()+
+  #Errorbars depicting +/- SE of mass measurements
+  geom_errorbar(aes(ymin = mean_log_invert-se_log_invert, 
+                    ymax = mean_log_invert+se_log_invert),
+                width=0, color = "grey40")+
+  geom_errorbar(aes(xmin = mean_log_wrack-se_log_wrack, 
+                    xmax = mean_log_wrack+se_log_wrack),
+                color = "grey40")+
+  #Points of mean values
+  geom_point(size = 3, aes(color = beach_width))+
+  #Fitted model and SE uncertainty
   geom_line(data = f1_plot_df2, 
             aes(x=log_wrack_biomass, y=log_invert_biomass))+
-  geom_errorbar(aes(ymin = mean_log_invert-se_log_invert, 
-                    ymax = mean_log_invert+se_log_invert))+
-  geom_errorbar(aes(xmin = mean_log_wrack-se_log_wrack, 
-                    xmax = mean_log_wrack+se_log_wrack))+
   geom_ribbon(data = f1_plot_df2, 
               mapping = aes(x=log_wrack_biomass, 
                             y = log_invert_biomass, 
                             ymin = mSE, ymax = pSE),
               alpha=0.3,linetype=0)+
-  theme_classic()+
-  labs(y = "Invertebrate Biomass (g)\n(ticks placed on log scale)", 
-       x = "Wrack Biomass (kg)\n(ticks placed on log scale)")+
+  #Color and theme settings
+  scale_color_viridis(trans = "log", 
+                      breaks = c(25, 50, 100, 200))+
   scale_y_continuous(
     breaks = c(-6.50229, -4.199705, -1.89712, 0.4054651, 2.70805, 5.010635), 
     labels = c( .0015, .015, .15, 1.5,15,150))+
   scale_x_continuous(
     breaks = c(5.010635, 7.31322, 9.615805, 11.91839), 
     labels = c(.15, 1.5, 15, 150))+
-  coord_cartesian(xlim = c(3, 12), ylim = c(-10, 6))
+  coord_cartesian(xlim = c(3, 12), ylim = c(-9, 6))+
+  theme_classic()+
+  labs(y = "Invertebrate Biomass (g)\n ", 
+       x = "Wrack Biomass (kg)\n",
+       color = "Beach\nWidth (m)\n")+
+  theme(axis.title = element_text(size=12, face="bold", colour = "black"),
+        legend.position = c(0.88,.29),
+        legend.key.size = unit(.8, 'cm'),
+        legend.box.background = element_rect(colour = "black", 
+                                             linewidth=1))
+  
 f1_plot
 
 #Save plot
-ggsave("output/main_figures/wrack_invert_biomass.png", 
+ggsave("output/extra_figures/wrack_invert_biomass.png", 
        f1_plot,
        width = 8, height = 5, units = "in")
