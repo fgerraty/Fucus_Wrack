@@ -46,3 +46,5 @@ ggplot(cover_biomass_plot, aes(x=log10(percent_cover), y=log10(biomass), color =
   geom_point()+
   theme_classic()+
   labs(x = "log(Percent Cover)", y = "log(Biomass (g))", color = "Species")
+
+

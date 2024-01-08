@@ -16,7 +16,7 @@ wrack_biomass <- read_csv("data/processed/wrack_biomass.csv")
 site_biomass <- wrack_biomass %>% 
   group_by(site, transect_number) %>% 
   summarise(mass_per_transect = sum(biomass), .groups = "drop_last") %>% 
-  summarise(mean_biomass = mean(mass_per_transect), .groups = "drop") %>% 
+  summarise(mean_biomass = mean(mass_per_transect)/1000, .groups = "drop") %>% 
   left_join(., sites[1:3], by = "site")
   
 
@@ -118,7 +118,8 @@ southeast <- ggplot() +
   theme_bw()+
   theme(axis.title.x = element_blank(),
         axis.title.y = element_blank(),
-        panel.background = element_rect(fill = "#BDE8FE"))
+        panel.background = element_rect(fill = "#BDE8FE"),
+        plot.background = element_rect(fill='transparent', color=NA))
 
 
 #############################################################################
@@ -129,11 +130,11 @@ sitka <- ggplot(data=alaska_coastline)+
   geom_sf(fill = "antiquewhite") +
   geom_point(data = site_biomass, #places study sites on the map, colored by value "wrack_biomass"
              mapping = aes(longitude, latitude, 
-                           fill = log10(mean_biomass)), 
+                           fill = mean_biomass), 
              size = 3,
              color= "black",
              pch=21)+
-  scale_fill_viridis()+ 
+  scale_fill_viridis(trans = "log", breaks = c(1,5,25,75))+ 
   geom_rect(aes(  # outer bounding box / border
     xmin = -135.42, 
     xmax = -135.27, 
@@ -149,7 +150,7 @@ sitka <- ggplot(data=alaska_coastline)+
            expand = FALSE)+
   scale_x_continuous(breaks=c(-135.3, -135.35, -135.4))+ # Sets the x (longitude) labels 
   theme_bw()+
-  labs(fill= "Wrack\nBiomass\n(log10(g))") +
+  labs(fill= "Wrack\nBiomass\n(kg)") +
   theme(legend.position = c(.95, .97),
         legend.justification = c("right", "top"),
         axis.title.x = element_blank(),
@@ -162,10 +163,14 @@ sitka <- ggplot(data=alaska_coastline)+
     location = "bl", which_north = "true",
     height = unit(1, "cm"), width = unit(1, "cm"),
     pad_y = unit(.75, "cm"),
-    style = north_arrow_fancy_orienteering())
+    style = north_arrow_fancy_orienteering()) +
+  theme(
+      plot.background = element_rect(fill='transparent', color=NA), #transparent plot bg
+      legend.box.background = element_rect(color = "black", linewidth = 1)
+)
 
 
-
+sitka
 #############################################################################
 # PART 5: Export maps to be compiled in illustrator  ########################
 #############################################################################
