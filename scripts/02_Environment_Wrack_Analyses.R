@@ -2,7 +2,7 @@
 # Sitka Sound Wrack Project ##############################################
 # Author: Frankie Gerraty (frankiegerraty@gmail.com; fgerraty@ucsc.edu) ##
 ##########################################################################
-# Script 0X: Environmental Features vs. Wrack Analyses ###################
+# Script 02: Environmental Features vs. Wrack Analyses ###################
 #-------------------------------------------------------------------------
 
 ################################################

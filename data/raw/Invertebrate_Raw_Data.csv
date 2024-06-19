@@ -1,4 +1,4 @@
-Site_Name,Site_Number,Sampling_Date,Transect_Number,Distance_From_Upper_Transect ,Number_of_Individuals_in_Sample,Species_ID,Species,Length,Mass,Notes
+site_name,site_number,sampling_date,transect_number,distance_from_upper_transect,number_of_individuals_in_sample,species_ID,species,length,mass,notes
 Sandy,1,6-Aug-22,1,1,0,NA,NA,NA,NA,
 Sandy,1,6-Aug-22,1,2,0,NA,NA,NA,NA,
 Sandy,1,6-Aug-22,1,3,1,TRTR,Traskorchestia traskiana,13.2,0.0584,
