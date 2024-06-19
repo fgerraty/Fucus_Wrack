@@ -26,7 +26,7 @@ invertebrate_summary <- read_csv("data/processed/invertebrate_summary.csv") %>%
             ISOPOD_count = sum(if_else(species_id == "ISOPOD", number_invertebrates, 0)))
 
 
-wrack_inverts <- left_join(wrack_biomass, invertebrate_summary, by = c("site", "transect_number")) %>% 
+wrack_inverts <- left_join(wrack_biomass, invertebrate_summary, by = c("site", "transect_number")) %>%
   replace_na(list(invert_biomass = 0.0001)) %>% 
   mutate(log_wrack_biomass = log(wrack_biomass),
          log_invert_biomass = log(invert_biomass))

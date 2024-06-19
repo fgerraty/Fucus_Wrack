@@ -1,131 +1,131 @@
-site,transect_number,species_id,species,percent_cover
-Cruise,1,FUDI,Fucus dischitus,0.06639999999999993
-Cruise,1,MAPY,Macrocystis pyrifera,0.007599999999999996
-Cruise,1,ZOMA,Zostera marina,1.0000000000000009e-4
-Cruise,2,FUDI,Fucus dischitus,0.059350000000000014
-Cruise,2,MAPY,Macrocystis pyrifera,0.013949999999999995
-Cruise,2,WOOD,Wood,5.000000000000004e-4
-Cruise,2,ZOMA,Zostera marina,0.003049999999999997
+site,transect_number,species_ID,species,percent_cover
+Cruise,1,FUDI,Fucus dischitus,0.0664
+Cruise,1,MAPY,Macrocystis pyrifera,0.0076
+Cruise,1,ZOMA,Zostera marina,1e-4
+Cruise,2,FUDI,Fucus dischitus,0.05935
+Cruise,2,MAPY,Macrocystis pyrifera,0.01395
+Cruise,2,WOOD,Wood,5e-4
+Cruise,2,ZOMA,Zostera marina,0.0030499999999999998
 Cruise,3,FUDI,Fucus dischitus,0.07785
-Eagle,1,FUDI,Fucus dischitus,0.047249999999999945
-Eagle,1,ZOMA,Zostera marina,2.0000000000000017e-4
-Eagle,2,FISH,Fish (Halibut),0.0019499999999999852
-Eagle,2,FUDI,Fucus dischitus,0.019850000000000003
-Eagle,2,ZOMA,Zostera marina,9.500000000000064e-4
-Eagle,3,FUDI,Fucus dischitus,0.004200000000000004
+Eagle,1,FUDI,Fucus dischitus,0.04725
+Eagle,1,ZOMA,Zostera marina,2e-4
+Eagle,2,FISH,Fish (Halibut),0.00195
+Eagle,2,FUDI,Fucus dischitus,0.01985
+Eagle,2,ZOMA,Zostera marina,9.500000000000001e-4
+Eagle,3,FUDI,Fucus dischitus,0.0042
 Eagle,3,WOOD,Wood,0.0010500000000000002
-Ferry,1,FUDI,Fucus dischitus,0.021049999999999958
-Ferry,1,WOOD,Wood,0.0025000000000000022
-Ferry,1,ZOMA,Zostera marina,0.001849999999999985
-Ferry,2,FUDI,Fucus dischitus,0.018849999999999978
-Ferry,2,WOOD,Wood,0.0011999999999999567
-Ferry,2,ZOMA,Zostera marina,0.0024500000000000077
-Ferry,3,FUDI,Fucus dischitus,0.046350000000000155
-Ferry,3,WOOD,Wood,0.0020499999999999295
-Ferry,3,ZOMA,Zostera marina,6.499999999999978e-4
-Halibut,1,FUDI,Fucus dischitus,0.04250000000000006
-Halibut,1,WOOD,Wood,0.00440000000000001
-Halibut,1,ZOMA,Zostera marina,0.0016000000000000014
-Halibut,2,FUDI,Fucus dischitus,0.08914999999999997
-Halibut,2,HAGL,Halosacccion glandiforme,0.0010999999999999233
-Halibut,2,WOOD,Wood,0.004750000000000007
-Halibut,2,ZOMA,Zostera marina,0.0013499999999999845
-Halibut,3,FUDI,Fucus dischitus,0.06739999999999999
-Halibut,3,WOOD,Wood,0.0037500000000000033
-Halibut,3,ZOMA,Zostera marina,1.9999999999988915e-4
-Harbor,1,DEAC,Desmarestia aculeata,4.5000000000000595e-4
-Harbor,1,FUDI,Fucus dischitus,0.04825000000000002
-Harbor,1,NELA,Neorhodomela larix,0.0012499999999999623
-Harbor,1,PAPA,Palmaria palmata,0.006150000000000011
-Harbor,1,WOOD,Wood,0.0029999999999999805
-Harbor,1,ZOMA,Zostera marina,0.04109999999999998
-Harbor,2,FUDI,Fucus dischitus,0.025249999999999995
-Harbor,2,NELA,Neorhodomela larix,0.0022499999999999964
-Harbor,2,WOOD,Wood,0.003749999999999987
-Harbor,2,ZOMA,Zostera marina,0.012499999999999978
-Harbor,3,FUDI,Fucus dischitus,0.018500000000000006
-Harbor,3,ZOMA,Zostera marina,0.004400000000000004
-Indian,1,CEPA,Ceramium pacificum,0.0015000000000000124
-Indian,1,FISH,Fish (Salmon),0.0035499999999999863
-Indian,1,FUDI,Fucus dischitus,0.15350000000000003
-Indian,1,SALA,Saccharina latissima,0.0023500000000000075
+Ferry,1,FUDI,Fucus dischitus,0.021050000000000003
+Ferry,1,WOOD,Wood,0.0025
+Ferry,1,ZOMA,Zostera marina,0.0018499999999999999
+Ferry,2,FUDI,Fucus dischitus,0.018850000000000002
+Ferry,2,WOOD,Wood,0.0012000000000000001
+Ferry,2,ZOMA,Zostera marina,0.00245
+Ferry,3,FUDI,Fucus dischitus,0.046349999999999995
+Ferry,3,WOOD,Wood,0.00205
+Ferry,3,ZOMA,Zostera marina,6.5e-4
+Halibut,1,FUDI,Fucus dischitus,0.042499999999999996
+Halibut,1,WOOD,Wood,0.004399999999999999
+Halibut,1,ZOMA,Zostera marina,0.0016
+Halibut,2,FUDI,Fucus dischitus,0.08914999999999998
+Halibut,2,HAGL,Halosacccion glandiforme,0.0010999999999999998
+Halibut,2,WOOD,Wood,0.00475
+Halibut,2,ZOMA,Zostera marina,0.00135
+Halibut,3,FUDI,Fucus dischitus,0.0674
+Halibut,3,WOOD,Wood,0.00375
+Halibut,3,ZOMA,Zostera marina,2e-4
+Harbor,1,DEAC,Desmarestia aculeata,4.5e-4
+Harbor,1,FUDI,Fucus dischitus,0.04825
+Harbor,1,NELA,Neorhodomela larix,0.00125
+Harbor,1,PAPA,Palmaria palmata,0.00615
+Harbor,1,WOOD,Wood,0.003
+Harbor,1,ZOMA,Zostera marina,0.041100000000000005
+Harbor,2,FUDI,Fucus dischitus,0.02525
+Harbor,2,NELA,Neorhodomela larix,0.00225
+Harbor,2,WOOD,Wood,0.00375
+Harbor,2,ZOMA,Zostera marina,0.0125
+Harbor,3,FUDI,Fucus dischitus,0.018500000000000003
+Harbor,3,ZOMA,Zostera marina,0.0044
+Indian,1,CEPA,Ceramium pacificum,0.0015
+Indian,1,FISH,Fish (Salmon),0.0035499999999999998
+Indian,1,FUDI,Fucus dischitus,0.1535
+Indian,1,SALA,Saccharina latissima,0.00235
 Indian,1,ULLA,Ulva latuca,0.005849999999999999
-Indian,2,FISH,Fish (Salmon),0.009699999999999997
-Indian,2,FUDI,Fucus dischitus,0.15069999999999995
-Indian,3,FISH,Fish (Salmon),0.0026000000000000025
+Indian,2,FISH,Fish (Salmon),0.0097
+Indian,2,FUDI,Fucus dischitus,0.1507
+Indian,3,FISH,Fish (Salmon),0.0026
 Indian,3,FUDI,Fucus dischitus,0.14675000000000002
-Jamestown,1,FUDI,Fucus dischitus,0.05955000000000001
-Jamestown,1,ZOMA,Zostera marina,7.500000000000062e-4
-Jamestown,2,FUDI,Fucus dischitus,0.017199999999999983
-Jamestown,2,WOOD,Wood,0.003750000000000009
-Jamestown,3,FUDI,Fucus dischitus,0.026699999999999908
-Magic,1,CYTR,Cymathaere triplicata,4.999999999999894e-4
-Magic,1,DEAC,Desmarestia aculeata,0.016200000000000013
-Magic,1,DEAC,Fucus dischitus,0.005299999999999994
-Magic,1,FUDI,Fucus dischitus,0.02494999999999999
-Magic,1,FUDI,Zostera marina,0.007200000000000007
-Magic,1,MAPY,Fucus dischitus,0.0035000000000000144
-Magic,1,ZOMA,Desmarestia aculeata,0.0049000000000000155
-Magic,1,ZOMA,Fucus dischitus,0.011799999999999988
-Magic,1,ZOMA,Macrocystis pyrifera,0.004700000000000015
-Magic,1,ZOMA,Zostera marina,0.020350000000000024
-Magic,2,DEAC,Desmarestia aculeata,0.0014499999999999958
-Magic,2,FUDI,Fucus dischitus,0.031349999999999975
-Magic,2,WOOD,Wood,0.0017499999999999987
-Magic,2,ZOMA,Zostera marina,0.014300000000000012
-Magic,3,DEAC,Desmarestia aculeata,0.00855000000000002
-Magic,3,FUDI,Fucus dischitus,0.01999999999999998
-Magic,3,WOOD,Wood,9.500000000000064e-4
-Magic,3,ZOMA,Zostera marina,0.01755000000000002
-Mosquito,1,FUDI,Fucus dischitus,0.06019999999999999
-Mosquito,2,FUDI,Fucus dischitus,0.08864999999999985
-Mosquito,2,MAPY,Macrocystis pyrifera,0.005599999999999994
-Mosquito,3,FUDI,Fucus dischitus,0.03234999999999998
-Mosquito,3,ULIN,Ulva intestinalis,2.499999999999947e-4
-Mosquito,3,ZOMA,Zostera marina,6.500000000000062e-4
-NetIsland,1,FUDI,Fucus dischitus,0.004700000000000026
-NetIsland,1,MAPY,Macrocystis pyrifera,0.027249999999999996
-NetIsland,1,WOOD,Wood,0.0014999999999999792
-NetIsland,1,ZOMA,Zostera marina,4.5000000000001706e-4
-NetIsland,2,FUDI,Fucus dischitus,0.015400000000000002
-NetIsland,2,WOOD,Wood,0.0031500000000000026
-NetIsland,3,FUDI,Fucus dischitus,0.03450000000000002
-OldSitka,1,CHFL,Chordaria flagelliformis,0.005500000000000016
-OldSitka,1,CLSE,Cladophora sericea,0.0012500000000000178
-OldSitka,1,FUDI,Fucus dischitus,0.04514999999999991
-OldSitka,1,MAST,Mastocarpus spp.,0.0018000000000000017
-OldSitka,1,ULIN,Ulva intestinalis,0.001100000000000012
-OldSitka,1,ZOMA,Zostera marina,6.500000000000062e-4
-OldSitka,2,CLSE,Cladophora sericea,8.999999999999897e-4
-OldSitka,2,FUDI,Fucus dischitus,0.036150000000000015
-OldSitka,2,MAST,Mastocarpus spp.,0.0012500000000000178
-OldSitka,3,CLSE,Cladophora sericea,0.002649999999999997
-OldSitka,3,FUDI,Fucus dischitus,0.06780000000000007
-OldSitka,3,ZOMA,Zostera marina,4.4999999999999484e-4
-Private,1,FUDI,Fucus dischitus,0.08024999999999997
-Private,2,FUDI,Fucus dischitus,0.07680000000000001
-Private,2,ZOMA,Zostera marina,6.999999999999895e-4
-Private,3,FUDI,Fucus dischitus,0.04889999999999997
-Sandy,1,FUDI,Fucus dischitus,0.011999999999999988
-Sandy,1,WOOD,Wood,9.500000000000009e-4
-Sandy,1,ZOMA,Zostera marina,0.001000000000000023
-Sandy,2,ZOMA,Zostera marina,1.9999999999997797e-4
-Sandy,3,HAGL,Halosacccion glandiforme,0.01660000000000004
-Sandy,3,WOOD,Wood,0.0025000000000000022
-Shotgun,1,FUDI,Fucus dischitus,0.01304999999999995
-Shotgun,2,FUDI,Fucus dischitus,0.005999999999999966
-Shotgun,2,NELA,Neorhodomela larix,4.0000000000000034e-4
-Shotgun,2,ZOMA,Zostera marina,0.001050000000000012
-Shotgun,3,FUDI,Fucus dischitus,0.00570000000000005
-Shotgun,3,LEMA,Leathesia marina,8.499999999999952e-4
-Shotgun,3,MAPY,Macrocystis pyrifera,3.500000000000003e-4
-Shotgun,3,ULLA,Ulva latuca,6.500000000000062e-4
-Shotgun,3,ZOMA,Zostera marina,0.00249999999999998
-Totem,1,FISH,Fish (Capelin),0.0016499999999999738
-Totem,1,FUDI,Fucus dischitus,0.1566499999999998
-Totem,1,ZOMA,Zostera marina,3.499999999999837e-4
-Totem,2,FISH,Fish (Capelin),0.005849999999999955
-Totem,2,FUDI,Fucus dischitus,0.30075000000000013
-Totem,2,WOOD,Wood,0.017700000000000004
-Totem,3,FUDI,Fucus dischitus,0.4628499999999998
-Totem,3,WOOD,Wood,0.023050000000000105
+Jamestown,1,FUDI,Fucus dischitus,0.05954999999999999
+Jamestown,1,ZOMA,Zostera marina,7.5e-4
+Jamestown,2,FUDI,Fucus dischitus,0.0172
+Jamestown,2,WOOD,Wood,0.00375
+Jamestown,3,FUDI,Fucus dischitus,0.026699999999999995
+Magic,1,CYTR,Cymathaere triplicata,5e-4
+Magic,1,DEAC,Desmarestia aculeata,0.0162
+Magic,1,DEAC,Fucus dischitus,0.0053
+Magic,1,FUDI,Fucus dischitus,0.02495
+Magic,1,FUDI,Zostera marina,0.007200000000000001
+Magic,1,MAPY,Fucus dischitus,0.0035000000000000005
+Magic,1,ZOMA,Desmarestia aculeata,0.0049
+Magic,1,ZOMA,Fucus dischitus,0.0118
+Magic,1,ZOMA,Macrocystis pyrifera,0.0047
+Magic,1,ZOMA,Zostera marina,0.02035
+Magic,2,DEAC,Desmarestia aculeata,0.00145
+Magic,2,FUDI,Fucus dischitus,0.03135
+Magic,2,WOOD,Wood,0.0017500000000000003
+Magic,2,ZOMA,Zostera marina,0.014300000000000002
+Magic,3,DEAC,Desmarestia aculeata,0.00855
+Magic,3,FUDI,Fucus dischitus,0.02
+Magic,3,WOOD,Wood,9.5e-4
+Magic,3,ZOMA,Zostera marina,0.01755
+Mosquito,1,FUDI,Fucus dischitus,0.06020000000000001
+Mosquito,2,FUDI,Fucus dischitus,0.08864999999999999
+Mosquito,2,MAPY,Macrocystis pyrifera,0.0056
+Mosquito,3,FUDI,Fucus dischitus,0.032350000000000004
+Mosquito,3,ULIN,Ulva intestinalis,2.5e-4
+Mosquito,3,ZOMA,Zostera marina,6.500000000000001e-4
+NetIsland,1,FUDI,Fucus dischitus,0.004699999999999999
+NetIsland,1,MAPY,Macrocystis pyrifera,0.027250000000000003
+NetIsland,1,WOOD,Wood,0.0015
+NetIsland,1,ZOMA,Zostera marina,4.5000000000000004e-4
+NetIsland,2,FUDI,Fucus dischitus,0.0154
+NetIsland,2,WOOD,Wood,0.00315
+NetIsland,3,FUDI,Fucus dischitus,0.0345
+OldSitka,1,CHFL,Chordaria flagelliformis,0.0055
+OldSitka,1,CLSE,Cladophora sericea,0.00125
+OldSitka,1,FUDI,Fucus dischitus,0.04515
+OldSitka,1,MAST,Mastocarpus spp.,0.0018
+OldSitka,1,ULIN,Ulva intestinalis,0.0010999999999999998
+OldSitka,1,ZOMA,Zostera marina,6.500000000000001e-4
+OldSitka,2,CLSE,Cladophora sericea,9e-4
+OldSitka,2,FUDI,Fucus dischitus,0.03615
+OldSitka,2,MAST,Mastocarpus spp.,0.00125
+OldSitka,3,CLSE,Cladophora sericea,0.00265
+OldSitka,3,FUDI,Fucus dischitus,0.06779999999999999
+OldSitka,3,ZOMA,Zostera marina,4.5e-4
+Private,1,FUDI,Fucus dischitus,0.08025
+Private,2,FUDI,Fucus dischitus,0.0768
+Private,2,ZOMA,Zostera marina,7e-4
+Private,3,FUDI,Fucus dischitus,0.048900000000000006
+Sandy,1,FUDI,Fucus dischitus,0.012
+Sandy,1,WOOD,Wood,9.5e-4
+Sandy,1,ZOMA,Zostera marina,0.001
+Sandy,2,ZOMA,Zostera marina,2e-4
+Sandy,3,HAGL,Halosacccion glandiforme,0.0166
+Sandy,3,WOOD,Wood,0.0025
+Shotgun,1,FUDI,Fucus dischitus,0.01305
+Shotgun,2,FUDI,Fucus dischitus,0.006
+Shotgun,2,NELA,Neorhodomela larix,4e-4
+Shotgun,2,ZOMA,Zostera marina,0.00105
+Shotgun,3,FUDI,Fucus dischitus,0.0057
+Shotgun,3,LEMA,Leathesia marina,8.500000000000001e-4
+Shotgun,3,MAPY,Macrocystis pyrifera,3.5e-4
+Shotgun,3,ULLA,Ulva latuca,6.5e-4
+Shotgun,3,ZOMA,Zostera marina,0.0025
+Totem,1,FISH,Fish (Capelin),0.00165
+Totem,1,FUDI,Fucus dischitus,0.15665
+Totem,1,ZOMA,Zostera marina,3.5e-4
+Totem,2,FISH,Fish (Capelin),0.00585
+Totem,2,FUDI,Fucus dischitus,0.30074999999999996
+Totem,2,WOOD,Wood,0.0177
+Totem,3,FUDI,Fucus dischitus,0.46285
+Totem,3,WOOD,Wood,0.02305

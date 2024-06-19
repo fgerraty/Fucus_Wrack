@@ -1,4 +1,4 @@
-site,transect_number,species_id,species,biomass
+site,transect_number,species_ID,species,biomass
 Cruise,1,DEAC,Desmarestia aculeata,2.043
 Cruise,1,FUDI,Fucus dischitus,7510.5
 Cruise,1,GRCA,Grateloupia californica,10.034
@@ -32,12 +32,12 @@ Eagle,2,CEPA,Ceramium pacificum,2.276
 Eagle,2,FUDI,Fucus dischitus,475
 Eagle,2,HAGL,Halosacccion glandiforme,1.366
 Eagle,2,MIBO,Microcladia borealis,0.686
-Eagle,2,PYLI,Pylaiella littoralis,27.299999999999997
+Eagle,2,PYLI,Pylaiella littoralis,27.3
 Eagle,2,ULIN,Ulva intestinalis,0.106
 Eagle,2,ZOMA,Zostera marina,9
 Eagle,3,FUDI,Fucus dischitus,253
-Eagle,3,PYLI,Pylaiella littoralis,1.2999999999999972
-Eagle,3,ZOMA,Zostera marina,12.700000000000003
+Eagle,3,PYLI,Pylaiella littoralis,1.3
+Eagle,3,ZOMA,Zostera marina,12.7
 Ferry,1,FUDI,Fucus dischitus,213
 Ferry,1,ZOMA,Zostera marina,13
 Ferry,2,CLSE,Cladophora sericea,1.25

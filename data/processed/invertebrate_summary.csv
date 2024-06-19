@@ -1,4 +1,4 @@
-site_name,transect_number,species_id,species,number_invertebrates,biomass
+site_name,transect_number,species_ID,species,number_invertebrates,biomass
 Cruise,1,ISOPOD,NA,38,0.04850253493141313
 Cruise,1,OTHER,NA,6,1.1014
 Cruise,1,TRTR,Traskorchestia traskiana,56,0.641801378207746
