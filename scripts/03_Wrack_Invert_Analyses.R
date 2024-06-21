@@ -20,10 +20,10 @@ invertebrate_summary <- read_csv("data/processed/invertebrate_summary.csv") %>%
   group_by(site, transect_number) %>% 
   summarise(invert_biomass = sum(biomass),
             invert_count = sum(number_invertebrates),
-            TRTR_biomass = sum(if_else(species_id == "TRTR", biomass, 0)),
-            TRTR_count = sum(if_else(species_id == "TRTR", number_invertebrates, 0)),
-            ISOPOD_biomass = sum(if_else(species_id == "ISOPOD", biomass, 0)),
-            ISOPOD_count = sum(if_else(species_id == "ISOPOD", number_invertebrates, 0)))
+            TRTR_biomass = sum(if_else(species_ID == "TRTR", biomass, 0)),
+            TRTR_count = sum(if_else(species_ID == "TRTR", number_invertebrates, 0)),
+            ISOPOD_biomass = sum(if_else(species_ID == "ISOPOD", biomass, 0)),
+            ISOPOD_count = sum(if_else(species_ID == "ISOPOD", number_invertebrates, 0)))
 
 
 wrack_inverts <- left_join(wrack_biomass, invertebrate_summary, by = c("site", "transect_number")) %>%
@@ -44,17 +44,11 @@ f1 <- lmer(log_invert_biomass ~ log_wrack_biomass +  (1|site),
 #Take a look at the model
 summary(f1)
 
-#Check assumptions
-plot(f1)
-qqnorm(resid(f1))
-
-#Need to check with Pete about this ################
-library(ggpubr)
-ggdensity(wrack_inverts$log_invert_biomass, 
-          main = "Density plot of wrack mass",
-          xlab = "Wrack mass")
-shapiro.test(wrack_inverts$log_invert_biomass)
-#####################################################
+# Check f1 assumptions with DHARMa package
+f1_res = simulateResiduals(f1)
+plot(f1_res, rank = T)
+testDispersion(f1_res)
+plotResiduals(f1_res, factor(wrack_inverts$site), xlab = "Site", main=NULL)
 
 
 f1_plot_df1 <- wrack_inverts %>% 
@@ -97,8 +91,6 @@ f1_plot <- ggplot(f1_plot_df1,
   geom_errorbar(aes(xmin = mean_log_wrack-se_log_wrack, 
                     xmax = mean_log_wrack+se_log_wrack),
                 color = "grey40")+
-  #Points of mean values
-  geom_point(size = 3, aes(color = beach_width))+
   #Fitted model and SE uncertainty
   geom_line(data = f1_plot_df2, 
             aes(x=log_wrack_biomass, y=log_invert_biomass))+
@@ -107,8 +99,10 @@ f1_plot <- ggplot(f1_plot_df1,
                             y = log_invert_biomass, 
                             ymin = mSE, ymax = pSE),
               alpha=0.3,linetype=0)+
+  #Points of mean values
+  geom_point(size = 3, aes(color = beach_width))+
   #Color and theme settings
-  scale_color_viridis(trans = "log", 
+  scale_color_viridis(option = "C", trans = "log", 
                       breaks = c(25, 50, 100, 200))+
   scale_y_continuous(
     breaks = c(-6.50229, -4.199705, -1.89712, 0.4054651, 2.70805, 5.010635), 

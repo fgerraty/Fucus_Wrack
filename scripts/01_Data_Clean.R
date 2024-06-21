@@ -223,11 +223,11 @@ ISOPOD_plot
 
 
 # Save plots
-ggsave("output/supp_figures/TRTR_length_mass.png", 
+ggsave("output/extra_figures/TRTR_length_mass.png", 
        TRTR_plot,
        width = 8, height = 5, units = "in")
 
-ggsave("output/supp_figures/ISOPOD_length_mass.png", 
+ggsave("output/extra_figures/ISOPOD_length_mass.png", 
        ISOPOD_plot,
        width = 8, height = 5, units = "in")
 
