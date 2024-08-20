@@ -2,7 +2,7 @@
 # Sitka Sound Wrack Project ##############################################
 # Author: Frankie Gerraty (frankiegerraty@gmail.com; fgerraty@ucsc.edu) ##
 ##########################################################################
-# Script 0X: Wrack Plots #################################################
+# Script 0X: Plots #######################################################
 #-------------------------------------------------------------------------
 
 ####################################
@@ -13,17 +13,20 @@
 wrack_cover <- read_csv("data/processed/wrack_cover.csv")
 wrack_biomass <- read_csv("data/processed/wrack_biomass.csv")
 wrack_zonation <- read_csv("data/processed/wrack_zonation.csv")
+invertebrates <- read_csv("data/processed/invertebrates.csv")
+invertebrate_summary <- read_csv("data/processed/invertebrate_summary.csv")
 
-
-####################################
-# PART 2: XXX ######################
-####################################
+######################################################################
+# PART 2: Create guides for plotting aesthetics ######################
+######################################################################
 
 #Sites ordered from North to South for plots
-site_order <- c("Mosquito", "OldSitka", "Shotgun", "Cruise", "Halibut", "Magic", "NetIsland", "Harbor", "Sandy", "Totem", "Indian", "Eagle", "Private", "Ferry", "Jamestown")
+site_order <- factor(c("Mosquito", "OldSitka", "Shotgun", "Cruise", "Halibut", "Magic", "NetIsland", "Harbor", "Sandy", "Totem", "Indian", "Eagle", "Private", "Ferry", "Jamestown"), ordered = TRUE)
+
+site_labels <- c("Mosquito", "Old Sitka", "Shotgun", "Cruise", "Halibut", "Magic", "Net Island", "Harbor", "Sandy", "Totem", "Indian", "Eagle", "Private", "Ferry", "Jamestown")
 
 #Wrack Species ordered from most to least total biomass
-wrack_order <- factor("Fucus dischitus", "Macrocystis pyrifera", "Zostera marina", "Other_Red_Algae", "Other_Brown_Algae", "Green_Algae")
+wrack_order <- factor(c("Green Algae", "Other Brown Algae", "Other Red Algae", "Zostera marina", "Macrocystis pyrifera", "Fucus dischitus"), ordered = TRUE)
 
 #Lumped macrophyte categories
 
@@ -33,18 +36,137 @@ other_brown_algae <- c("Pylaiella littoralis","Chordaria flagelliformis","Cymath
 
 green_algae <- c("Cladophora sericea","Ulva intestinalis","Chaetomorpha sp.","Ulva latuca","Ulva prolifera","Acrosiphonia coalita")
 
-##############################################################
-# PART X: Percent Cover vs Biomass Plot ######################
-##############################################################
+#Wrack color palette
+wrack_colors <- c("Fucus dischitus" = "#ed8b00", "Macrocystis pyrifera" = "#0f85a0", "Green Algae" ="#5BBCD6", "Other Red Algae" = "#dd4124", "Other Brown Algae" = "#DDAB3B", "Zostera marina" = "#edd746")
 
-cover_biomass_plot <- left_join(wrack_cover, wrack_biomass, 
-                                by = c("site","transect_number","species_id","species")) %>% 
-  drop_na(biomass) %>%  #remove wood and fish 
-  filter(species_id %in% c("FUDI", "ZOMA")) #filter for species with >5 observations
+#################################################################
+# PART 3: Biomass and Species Composition Multi-Panel Plot ######
+#################################################################
 
-ggplot(cover_biomass_plot, aes(x=log10(percent_cover), y=log10(biomass), color = species))+
-  geom_point()+
-  theme_classic()+
-  labs(x = "log(Percent Cover)", y = "log(Biomass (g))", color = "Species")
+# Panel A: Wrack Abundance per Site Plot ####
+
+wrack_biomass_summary <- read_csv("data/processed/wrack_biomass.csv") %>% 
+  group_by(site, transect_number) %>% 
+  summarise(wrack_biomass = sum(biomass)) %>% 
+  ungroup(transect_number) %>% 
+  summarise(mean_wrack_biomass = mean(wrack_biomass),
+            SE = sd(wrack_biomass)/sqrt(3))
+
+ggplot(wrack_biomass_summary, aes(x=factor(site, levels = site_order), 
+                                  y=mean_wrack_biomass))+
+  geom_bar(stat = "identity", fill = "grey65")+
+  geom_errorbar(aes(ymin = mean_wrack_biomass-SE,
+                    ymax= mean_wrack_biomass+SE,
+                    width = .2))+
+  labs(x="", y= "Wrack Biomass (kg per transect)\n(axis ticks on log scale)")+
+  #Reorganize Y axis scale to place it on a log scale
+  scale_y_log10(breaks = c(100, 1000, 10000, 100000), 
+                labels = c(".1", "1", "10", "100"))+
+  #Set themes and aesthetics
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())+
+  #Cut off lower section of plots to better show differences between sites
+  coord_cartesian(ylim = c(30,130000))
 
 
+ggsave("output/extra_figures/wrack_biomass_panel.png", 
+       width = 8.5, height = 3.25, units = "in")
+
+
+# Panel B: Wrack Proportions per Species Plot ####
+
+wrack_species_breakdown <- wrack_biomass %>% 
+  mutate(species_lumped = if_else(species %in% other_red_algae, 
+                                  "Other Red Algae",
+                          if_else(species %in% other_brown_algae,
+                                  "Other Brown Algae",
+                          if_else(species %in% green_algae,
+                                  "Green Algae",
+                                  species)))) %>% 
+  group_by(site, species_lumped) %>% 
+  summarise(sum_biomass = sum(biomass), .groups = "drop")
+
+
+ggplot(wrack_species_breakdown, aes(x=factor(site, levels = site_order), 
+                                    y=sum_biomass, 
+                                    fill = factor(species_lumped, 
+                                                  levels = wrack_order)))+
+  geom_col(position = "fill")+
+  scale_fill_manual(values = wrack_colors)+
+  labs(x = "", y = "Proportion of wrack biomass", fill = "Species")+
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+
+ggsave("output/extra_figures/wrack_species_panel.png", 
+       width = 9.5, height = 2.9, units = "in")
+
+
+# Panel C: Invert Abundance per Site Plot #### 
+
+invert_biomass_summary <- invertebrate_summary %>% 
+  group_by(site_name, transect_number) %>% 
+  summarise(invert_biomass = sum(biomass)*1000, .groups = "drop") %>% 
+  add_row(site_name = "Sandy", transect_number = 2:3, invert_biomass = 0) %>% 
+  add_row(site_name = "OldSitka", transect_number = 1:3, invert_biomass = 0) %>% 
+  group_by(site_name) %>% 
+  summarise(mean_invert_biomass = mean(invert_biomass),
+            SE = sd(invert_biomass)/sqrt(3), .groups = "drop")
+
+
+ggplot(invert_biomass_summary, aes(x=factor(site_name, levels = site_order), 
+                                  y=mean_invert_biomass))+
+  geom_bar(stat = "identity", fill = "grey65")+
+  geom_errorbar(aes(ymin = if_else(site_name == "Sandy", mean_invert_biomass-SE+1,
+  mean_invert_biomass-SE),
+                    ymax= mean_invert_biomass+SE,
+                    width = .2))+
+  labs(x="", y= "Invertebrate Biomass (g per transect)\n(axis ticks on log scale)")+
+  #Reorganize Y axis scale to place it on a log scale
+  scale_y_continuous(transform = "log10", 
+                     breaks = c(1,10,100,1000,10000), 
+                     labels = c(".0001", ".001", ".01", "1", "10"))+
+  #Set themes and aesthetics
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+ggsave("output/extra_figures/invert_biomass_panel.png", 
+       width = 8.9, height = 3.25, units = "in")
+
+# Panel D: Invertebrate Biomass Species Proportions ####
+
+invert_species_breakdown <- invertebrate_summary %>% 
+  group_by(site_name, species_ID) %>% 
+  summarise(sum_biomass = sum(biomass), .groups = "drop") %>% 
+  add_row(site_name = "OldSitka", species_ID = "TRTR", sum_biomass = 0)
+
+
+ggplot(invert_species_breakdown, aes(x=factor(site_name, levels = site_order), 
+                                    y=sum_biomass, 
+                                    fill = factor(species_ID, 
+                                                  levels = c("OTHER", "ISOPOD", "TRTR"))))+
+  geom_col(position = "fill")+
+  scale_fill_manual(values = c("red",  "darkgreen", "blue"), labels = c("Other\nInvertebrates", "Isopods", "Traskorchestia\ntraskiana"))+
+  labs(x = "Site", y = "Proportion of invertebrate biomass", fill = "Species")+
+  scale_x_discrete(labels = site_labels)+
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(.75, "cm"))
+
+ggsave("output/extra_figures/invert_species_panel.png", 
+       width = 10.2, height = 3.85, units = "in")
