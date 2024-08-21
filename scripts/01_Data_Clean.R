@@ -20,7 +20,8 @@ sites <- read_csv("data/raw/sites.csv") %>%
          percent_granule = rowSums(pick(granule_1:granule_10))/1000,
          percent_sand = rowSums(pick(sand_1:sand_10))/1000) %>% 
   #Keep relevant summarized columns and order variables by type (site/survey metadata, static environmental variables, dynamic environmental variables)
-  dplyr::select(site:slope_mean, percent_boulder:percent_sand, wind_direction:high_tide)
+  dplyr::select(site:slope_mean, percent_boulder:percent_sand, wind_direction:high_tide) %>% 
+  drop_na(site)
 
 
 # PART 1B: "Wrack Cover" Dataset -----------------------------------------------

@@ -88,7 +88,9 @@ donor_habitat_models <- aictab(cand.set=list(f1, f2, f3, f4),
                                            "Intertidal Area Within 200m Buffer", 
                                            "null")),
                                second.ord=F) %>% 
-  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), round, digits = 3))
+  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), 
+                \(x) round(x, digits = 3)))
+
 
 
 
@@ -223,7 +225,7 @@ wrack_models_summary
 
 
 #Export high-quality table
-gtsave(scav_prob_summary, "output/supp_figures/scavenging_probability_table.pdf")
+gtsave(wrack_models_summary, "output/supp_figures/scavenging_probability_table.pdf")
 
 
 
