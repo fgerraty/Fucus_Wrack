@@ -83,123 +83,171 @@ summary(f4)
 
 
 donor_habitat_models <- aictab(cand.set=list(f1, f2, f3, f4),
-                               modnames=(c("Intertidal Width",
-                                           "Intertidal Area Within 100m Buffer",
-                                           "Intertidal Area Within 200m Buffer", 
+                               modnames=(c("Intertidal Width***",
+                                           "Intertidal Area Within 100m Buffer***",
+                                           "Intertidal Area Within 200m Buffer***", 
                                            "null")),
                                second.ord=F) %>% 
   mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), 
                 \(x) round(x, digits = 3)))
 
 
+donor_habitat_models
+
+#Summary Table
+
+donor_models_gt <- gt(donor_habitat_models)
+
+donor_models_summary <- 
+  donor_models_gt |>
+  tab_header(
+    title = "Donor Habitat Predictors of Wrack Biomass",
+    subtitle = "Generalized Linear Models with Gamma Distributions and Log Link Functions (***p<.005, *p<.05)"
+  ) |>
+  cols_label(Modnames = md("**Model Name**"),
+             K = md("**K**"),
+             AIC = md("**AIC**"),
+             Delta_AIC = md("**∆AIC**"),
+             ModelLik = md("**Model Likelihood**"),
+             AICWt = md("**AIC Weight**"),
+             LL = md("**Log Likelihood**"),
+             Cum.Wt = md("**Cumulative Weight**")) 
+donor_models_summary
+
+
+#Export high-quality table
+gtsave(donor_models_summary, "output/supp_figures/donor_habitat_models_table.pdf")
 
 
 ##############################################
 # PART 4: All Predictors Modelling ###########
 ##############################################
 
-# Model F5: Climatic Variables ####
 
-f5 <- glmmTMB(mean_wrack_biomass~wind_direction+wind_speed+wave_height+wave_period+high_tide, 
+# Model G1: Intertidal Width ####
+
+g1 <- glmmTMB(mean_wrack_biomass~beach_width, 
+              data = wrack_predictors, 
+              family=Gamma(link = "log"))
+summary(g1)
+
+# Check assumptions with DHARMa package
+g1_res = simulateResiduals(g1)
+plot(g1_res, rank = T)
+testDispersion(g1_res)
+
+
+
+# Model G2: Climatic Variables ####
+
+g2 <- glmmTMB(mean_wrack_biomass~wind_direction+wind_speed+wave_height+wave_period+high_tide, 
                data = wrack_predictors, 
                family=Gamma(link = "log"))
-summary(f5)
+summary(g2)
 
 # Check assumptions with DHARMa package
-f5_res = simulateResiduals(f5)
-plot(f5_res, rank = T)
-testDispersion(f5_res)
+g2_res = simulateResiduals(g2)
+plot(g2_res, rank = T)
+testDispersion(g2_res)
 
 
-# Model F6: Biophysical Site Variables ####
+# Model G3: Biophysical Site Variables ####
 
-f6 <- glmmTMB(mean_wrack_biomass~aspect+slope_mean+wave_exposure, 
+g3 <- glmmTMB(mean_wrack_biomass~aspect+slope_mean+wave_exposure, 
             data = wrack_predictors, 
             family=Gamma(link = "log"))
-summary(f6)
+summary(g3)
 
 # Check assumptions with DHARMa package
-f6_res = simulateResiduals(f6)
-plot(f6_res, rank = T)
-testDispersion(f6_res)
+g3_res = simulateResiduals(g3)
+plot(g3_res, rank = T)
+testDispersion(g3_res)
 
-# Model F7: Intertidal Width + Climatic Variables ####
+# Model G4: Intertidal Width + Climatic Variables ####
 
-f7 <- glmmTMB(mean_wrack_biomass~wind_direction+wind_speed+wave_height+
+g4 <- glmmTMB(mean_wrack_biomass~wind_direction+wind_speed+wave_height+
                                         wave_period+high_tide +
                                         beach_width, 
                                       data = wrack_predictors, 
                                       family=Gamma(link = "log"))
-summary(f7)
+summary(g4)
 
 # Check assumptions with DHARMa package
-f7_res = simulateResiduals(f7)
-plot(f7_res, rank = T)
-testDispersion(f7_res)
+g4_res = simulateResiduals(g4)
+plot(g4_res, rank = T)
+testDispersion(g4_res)
 
-# Model F8: Intertidal Width + Biophysical Site Variables ####
+# Model G5: Intertidal Width + Biophysical Site Variables ####
 
-f8 <- glmmTMB(mean_wrack_biomass~aspect+slope_mean+wave_exposure+
+g5 <- glmmTMB(mean_wrack_biomass~aspect+slope_mean+wave_exposure+
                                  beach_width, 
                                data = wrack_predictors, 
                                family=Gamma(link = "log"))
-summary(f8)
+summary(g5)
 
 # Check assumptions with DHARMa package
-f8_res = simulateResiduals(f8)
-plot(f8_res, rank = T)
-testDispersion(f8_res)
+g5_res = simulateResiduals(g5)
+plot(g5_res, rank = T)
+testDispersion(g5_res)
 
 
-# Model F9: Biophysical Site Variables + Climatic Variables ####
+# Model G6: Biophysical Site Variables + Climatic Variables ####
 
-f9 <- glmmTMB(mean_wrack_biomass~
+g6 <- glmmTMB(mean_wrack_biomass~
                            aspect+slope_mean+wave_exposure+ #Site variables
                            wind_direction+wind_speed+wave_height+ #Climate variables
                            wave_period+high_tide,
                          data = wrack_predictors, 
                          family=Gamma(link = "log"))
-summary(f9)
+summary(g6)
 
 # Check assumptions with DHARMa package
-f9_res = simulateResiduals(f9)
-plot(f9_res, rank = T)
-testDispersion(f9_res)
+g6_res = simulateResiduals(g6)
+plot(g6_res, rank = T)
+testDispersion(g6_res)
 
 
-# Model F10: Intertidal Width + Biophysical Site Variables + Climatic Variables ####
+# Model G7: Intertidal Width + Biophysical Site Variables + Climatic Variables ####
 
-f10 <- glmmTMB(mean_wrack_biomass~ beach_width+ #Intertidal width
+g7 <- glmmTMB(mean_wrack_biomass~ beach_width+ #Intertidal width
              aspect+slope_mean+wave_exposure+ #biophysical site variables
              wind_direction+wind_speed+wave_height+ #Climate variables
              wave_period+high_tide,
              data = wrack_predictors, 
              family=Gamma(link = "log"))
-summary(f10)
+summary(g7)
 
 # Check assumptions with DHARMa package
-f10_res = simulateResiduals(f10)
-plot(f10_res, rank = T)
-testDispersion(f10_res)
+g7_res = simulateResiduals(g7)
+plot(g7_res, rank = T)
+testDispersion(g7_res)
+
 
 
 
 # Compare Models ####
 
-all_wrack_models <- aictab(cand.set=list(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10),
+all_wrack_models <- aictab(cand.set=list(g1, g2, g3, g4, g5, g6, g7, f4),
                                modnames=(c("Intertidal Width",
-                                           "Intertidal Area Within 100m Buffer",
-                                           "Intertidal Area Within 200m Buffer",
-                                           "Null", 
                                            "Climatic Variables", 
                                            "Biophysical Site Variables",
                                            "Intertidal Width + Climatic Variables", 
                                            "Intertidal Width + Biophysical Site Variables",
                                            "Biophysical Site Variables + Climatic Variables",
-                                           "Intertidal Width + Biophysical Site Variables + Climatic Variables"
+                                           "Intertidal Width + Biophysical Site Variables + Climatic Variables",
+                                           "Null" 
                                            )),
                                second.ord=F) %>% 
-  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), round, digits = 3))
+  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), round, digits = 3),
+         model_terms = c("Intertidal Width***",
+                         "Intertidal Width*** + Aspect + Slope + Wave Exposure",
+                         "Intertidal Width* + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide", 
+                         "Wind Direction + Wind Speed* + Wave Height* + Wave Period + High Tide*", 
+                         "Aspect* + Slope + Wave Exposure*",
+                         "Intertidal Width* + Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide",
+                         "Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide*",
+                         "Null" )) %>% 
+  relocate(model_terms, .after=Modnames)
 
 
 
@@ -211,9 +259,10 @@ wrack_models_summary <-
   wrack_models_gt |>
   tab_header(
     title = "Environmental Predictors of Wrack Biomass",
-    subtitle = "Generalized Linear Mixed-Effects Models with Gamma Distributions and Log Link Functions"
+    subtitle = "Generalized Linear Models with Gamma Distributions and Log Link Functions (***p<.005, *p<.05)"
   ) |>
-  cols_label(Modnames = md("**Model terms**"),
+  cols_label(Modnames = md("**Model Name**"),
+             model_terms = md("**Model Terms**"),
              K = md("**K**"),
              AIC = md("**AIC**"),
              Delta_AIC = md("**∆AIC**"),
@@ -225,7 +274,7 @@ wrack_models_summary
 
 
 #Export high-quality table
-gtsave(wrack_models_summary, "output/supp_figures/scavenging_probability_table.pdf")
+gtsave(wrack_models_summary, "output/supp_figures/environmental_predictors_table.pdf")
 
 
 
