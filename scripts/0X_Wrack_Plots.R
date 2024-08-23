@@ -37,7 +37,7 @@ other_brown_algae <- c("Pylaiella littoralis","Chordaria flagelliformis","Cymath
 green_algae <- c("Cladophora sericea","Ulva intestinalis","Chaetomorpha sp.","Ulva latuca","Ulva prolifera","Acrosiphonia coalita")
 
 #Wrack color palette
-wrack_colors <- c("Fucus dischitus" = "#ed8b00", "Macrocystis pyrifera" = "#0f85a0", "Green Algae" ="#5BBCD6", "Other Red Algae" = "#dd4124", "Other Brown Algae" = "#DDAB3B", "Zostera marina" = "#edd746")
+wrack_colors <- c("Fucus dischitus" = "#E69F00", "Macrocystis pyrifera" = "#0072B2", "Green Algae" ="#009E73", "Other Red Algae" = "#D55E00", "Other Brown Algae" = "#56B4E9", "Zostera marina" = "#CC79A7")
 
 #################################################################
 # PART 3: Biomass and Species Composition Multi-Panel Plot ######
@@ -158,7 +158,7 @@ ggplot(invert_species_breakdown, aes(x=factor(site_name, levels = site_order),
                                     fill = factor(species_ID, 
                                                   levels = c("OTHER", "ISOPOD", "TRTR"))))+
   geom_col(position = "fill")+
-  scale_fill_manual(values = c("red",  "darkgreen", "blue"), labels = c("Other\nInvertebrates", "Isopods", "Traskorchestia\ntraskiana"))+
+  scale_fill_manual(values = c("#9a031e",  "#e36414", "#0f4c5c"), labels = c("Other\nInvertebrates", "Isopods", "Traskorchestia\ntraskiana"))+
   labs(x = "Site", y = "Proportion of invertebrate biomass", fill = "Species")+
   scale_x_discrete(labels = site_labels)+
   theme_few()+
