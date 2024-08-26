@@ -170,3 +170,40 @@ ggplot(invert_species_breakdown, aes(x=factor(site_name, levels = site_order),
 
 ggsave("output/extra_figures/invert_species_panel.png", 
        width = 10.2, height = 3.85, units = "in")
+
+
+####################################
+# PART 4: Wrack Zonation Plot ######
+####################################
+
+zonation_plot_df <- wrack_zonation %>% 
+  filter(!site %in% c("Sandy", "Magic")) %>% 
+  mutate(species_lumped = case_when(species %in% other_red_algae   ~ "Other Red Algae",
+                                    species %in% other_brown_algae ~ "Other Brown Algae",
+                                    species %in% green_algae       ~ "Green Algae",
+                                    TRUE                           ~ species),
+         zone = case_when(zone_start == 0  ~ "0-5",
+                          zone_start == 5  ~ "5-10",
+                          zone_start == 10 ~ "10-15",
+                          zone_start == 15 ~ "15-20",
+                          TRUE ~ NA_character_)) %>% 
+  group_by(zone, species_lumped) %>% 
+  summarise(biomass = sum(biomass), .groups = "drop")
+
+zonation_plot <- ggplot(zonation_plot_df, aes(x=zone, y=biomass, fill=factor(species_lumped, 
+                                                             levels = wrack_order)))+
+  geom_col()+
+  scale_fill_manual(values = wrack_colors)+
+  scale_y_continuous(labels = function(x) x / 1000) +
+  labs(x = "Transect Zone (m)", y = "Wrack biomass (kg)", fill = "Species")+
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1))
+
+#Save plot
+ggsave("output/supp_figures/zonation_plot.png", 
+       zonation_plot,
+       width = 8, height = 5, units = "in")
+
+  
