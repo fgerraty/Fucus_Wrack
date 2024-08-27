@@ -24,16 +24,7 @@ sites <- read_csv("data/raw/sites.csv") %>%
   drop_na(site)
 
 
-# PART 1B: "Wrack Cover" Dataset -----------------------------------------------
-
-#Import and clean "wrack_cover" dataset, which includes all data from wrack percent cover surveys
-wrack_cover <- read_csv("data/raw/Wrack_Percent_Cover_Raw_Data.csv") %>% 
-  #Calculate the total distance along each transect covered by each macrophyte species, and then divide by 20 to get the percent cover of each transect. 
-  group_by(site, transect_number, species_ID, species) %>% 
-  summarise(percent_cover = sum(total_distance)/20, .groups = "drop")
-
-
-# PART 1C: "Wrack Biomass" Dataset ---------------------------------------------
+# PART 1B: "Wrack Biomass" Dataset ---------------------------------------------
 
 #Import and clean "wrack_biomass" dataset, which includes all data from wrack biomass surveys
 wrack_biomass <- read_csv("data/raw/Wrack_Biomass_Raw_Data.csv") %>% 
@@ -48,7 +39,7 @@ wrack_zonation <- read_csv("data/raw/Wrack_Biomass_Raw_Data.csv") %>%
   summarise(biomass = sum(wrack_mass_per_transect), .groups = "drop")
 
 
-# PART 1D: "Invertebrate" Dataset Import --------------------------------------
+# PART 1C: "Invertebrate" Dataset Import --------------------------------------
 
 #Import and clean "invertebrate" dataset, which includes all invertebrate data
   
@@ -161,7 +152,6 @@ invertebrate_summary <- invertebrates %>%
 ####################################
 
 write_csv(sites, "data/processed/sites.csv")
-write_csv(wrack_cover, "data/processed/wrack_cover.csv")
 write_csv(wrack_biomass, "data/processed/wrack_biomass.csv")
 write_csv(wrack_zonation, "data/processed/wrack_zonation.csv")
 write_csv(invertebrates, "data/processed/invertebrates.csv")
