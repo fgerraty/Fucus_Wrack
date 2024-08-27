@@ -210,7 +210,7 @@ Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,CHEX,Chondracanthus exasperatus,We
 Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,SALA,Saccharina latissima,Wet,0,0.562,0.562,0.562
 Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,PTSE,Ptilota serrata,Wet,0,10.522,10.522,10.522
 Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,PAPA,Palmaria palmata,Wet,0,0.242,0.242,0.242
-Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,AHFA,Ahnfeltia fastigata,Dry,0,0.786,0.786,0.786
+Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,AHFA,Ahnfeltia fastigiata,Dry,0,0.786,0.786,0.786
 Private,7,17-Aug-22,1m Swath Transect,1,1,0,5,GRCA,Grateloupia californica,Dry,0,0.152,0.152,0.152
 Private,7,17-Aug-22,1m Swath Transect,1,2,15,20,FUDI,Fucus distichus,Wet,39,43,4,4
 Private,7,17-Aug-22,1m Swath Transect,1,2,10,15,ZOMA,Zostera marina,Wet,41,42,1,1
@@ -244,7 +244,7 @@ Jamestown,8,24-Aug-22,1m Swath Transect,1,1,10,15,ZOMA,Zostera marina,Wet,21,21.
 Jamestown,8,24-Aug-22,1m Swath Transect,1,1,15,20,FUDI,Fucus distichus,Wet,20,450,430,430
 Jamestown,8,24-Aug-22,1m Swath Transect,1,1,5,10,FUDI,Fucus distichus,Wet,20,240,220,220
 Jamestown,8,24-Aug-22,1m Swath Transect,1,1,5,10,ZOMA,Zostera marina,Wet,19.5,20,0.5,0.5
-Jamestown,8,24-Aug-22,1m Swath Transect,1,1,5,10,AHFA,Ahnfeltia fastigata,Wet,0,1.507,1.507,1.507
+Jamestown,8,24-Aug-22,1m Swath Transect,1,1,5,10,AHFA,Ahnfeltia fastigiata,Wet,0,1.507,1.507,1.507
 Jamestown,8,24-Aug-22,1m Swath Transect,1,1,0,5,ZOMA,Zostera marina,Wet,20,42.5,22.5,22.5
 Jamestown,8,24-Aug-22,1m Swath Transect,1,1,0,5,FUDI,Fucus distichus,Wet,60,2510,2450,2450
 Jamestown,8,24-Aug-22,1m Swath Transect,1,2,15,20,ZOMA,Zostera marina,Wet,20.5,21,0.5,0.5
@@ -260,7 +260,7 @@ Jamestown,8,24-Aug-22,1m Swath Transect,1,3,10,15,FUDI,Fucus distichus,Wet,20,32
 Jamestown,8,24-Aug-22,1m Swath Transect,1,3,5,10,FUDI,Fucus distichus,Wet,20,750,730,730
 Jamestown,8,24-Aug-22,1m Swath Transect,1,3,0,5,ZOMA,Zostera marina,Dry,20.5,31.25,10.75,10.75
 Jamestown,8,24-Aug-22,1m Swath Transect,1,3,0,5,FUDI,Fucus distichus,Wet,40,1400,1360,1360
-Jamestown,8,24-Aug-22,1m Swath Transect,1,3,0,5,AHFA,Ahnfeltia fastigata,Dry,0,2.765,2.765,2.765
+Jamestown,8,24-Aug-22,1m Swath Transect,1,3,0,5,AHFA,Ahnfeltia fastigiata,Dry,0,2.765,2.765,2.765
 Halibut,9,25-Aug-22,1m Swath Transect,1,1,15,20,FUDI,Fucus distichus,Wet,20,75,55,55
 Halibut,9,25-Aug-22,1m Swath Transect,1,1,15,20,ZOMA,Zostera marina,Wet,30,30.5,0.5,0.5
 Halibut,9,25-Aug-22,1m Swath Transect,1,1,10,15,FUDI,Fucus distichus,Wet,30,83,53,53
@@ -409,7 +409,7 @@ Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,MAPY,Macrocystis pyrifera,Wet,178,
 Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,FUDI,Fucus distichus,Wet,537,7025,6488,6488
 Cruise,12,30-Aug-22,1m Swath Transect,1,2,15,20,MAST,Mastocarpus spp.,Wet,0,0.248,0.248,0.248
 Cruise,12,30-Aug-22,1m Swath Transect,1,2,5,10,GRCA,Grateloupia californica,Wet,0,1.134,1.134,1.134
-Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,AHFA,Ahnfeltia fastigata,Wet,0,2.575,2.575,2.575
+Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,2.575,2.575,2.575
 Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,GRCA,Grateloupia californica,Wet,0,5.899,5.899,5.899
 Cruise,12,30-Aug-22,1m Swath Transect,1,2,0,5,NEOX,Neorhodomela spp.,Wet,0,5.218,5.218,5.218
 Cruise,12,30-Aug-22,1m Swath Transect,1,3,15,20,FUDI,Fucus distichus,Wet,20,155,135,135
@@ -449,7 +449,7 @@ Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,FUDI,Fucus distichus,Wet,235,5985
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,5,10,ZOMA,Zostera marina,Wet,0,1.58,1.58,1.58
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,5,10,ULIN,Ulva intestinalis,Wet,0,0.529,0.529,0.529
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,ZOMA,Zostera marina,Wet,0,42.628,42.628,42.628
-Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,AHFA,Ahnfeltia fastigata,Wet,0,0.163,0.163,0.163
+Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,0.163,0.163,0.163
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,ULIN,Ulva intestinalis,Wet,0,0.819,0.819,0.819
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,MAST,Mastocarpus spp.,Wet,0,1.945,1.945,1.945
 Mosquito,13,1-Sep-22,1m Swath Transect,1,2,0,5,GRCA,Grateloupia californica,Wet,0,13.236,13.236,13.236
@@ -464,7 +464,7 @@ Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,FUDI,Fucus distichus,Wet,171,5880
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,15,20,ZOMA,Zostera marina,Wet,0,1.597,1.597,1.597
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,10,15,ZOMA,Zostera marina,Wet,0,0.528,0.528,0.528
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,ZOMA,Zostera marina,Wet,0,20.869,20.869,20.869
-Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,AHFA,Ahnfeltia fastigata,Wet,0,1.624,1.624,1.624
+Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,1.624,1.624,1.624
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,ULIN,Ulva intestinalis,Wet,0,1.207,1.207,1.207
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,MAST,Mastocarpus spp.,Wet,0,1.376,1.376,1.376
 Mosquito,13,1-Sep-22,1m Swath Transect,1,3,0,5,GRCA,Grateloupia californica,Wet,0,13.572,13.572,13.572
@@ -477,7 +477,7 @@ Totem,14,9-Sep-22,1m Swath Transect,1,1,5,10,FUDI,Fucus distichus,Wet,20,53,33,3
 Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,FUDI,Fucus distichus,Wet,4298,41635,37337,37337
 Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,ZOMA,Zostera marina,Wet,0,100.922,100.922,100.922
 Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,DEAC,Desmarestia aculeata,Wet,0,10.957,10.957,10.957
-Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,AHFA,Ahnfeltia fastigata,Wet,0,1.602,1.602,1.602
+Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,1.602,1.602,1.602
 Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,NELA,Neorhodomela larix,Wet,0,4.627,4.627,4.627
 Totem,14,9-Sep-22,1m Swath Transect,1,1,0,5,ACCO,Acrosiphonia coalita,Wet,0,1.306,1.306,1.306
 Totem,14,9-Sep-22,1m Swath Transect,1,2,15,20,FUDI,Fucus distichus,Wet,73,2710,2637,2637
@@ -507,7 +507,7 @@ Totem,14,9-Sep-22,1m Swath Transect,1,3,5,10,ZOMA,Zostera marina,Wet,0,0.531,0.5
 Totem,14,9-Sep-22,1m Swath Transect,1,3,5,10,GRCA,Grateloupia californica,Wet,0,1.797,1.797,1.797
 Totem,14,9-Sep-22,1m Swath Transect,1,3,5,10,NELA,Neorhodomela larix,Wet,0,0.449,0.449,0.449
 Totem,14,9-Sep-22,1m Swath Transect,1,3,5,10,ACCO,Acrosiphonia coalita,Wet,0,3.001,3.001,3.001
-Totem,14,9-Sep-22,0.5m Swath Transect,0.5,3,0,5,AHFA,Ahnfeltia fastigata,Wet,0,8.841,8.841,17.682
+Totem,14,9-Sep-22,0.5m Swath Transect,0.5,3,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,8.841,8.841,17.682
 Totem,14,9-Sep-22,0.5m Swath Transect,0.5,3,0,5,NELA,Neorhodomela larix,Wet,0,1.199,1.199,2.398
 Totem,14,9-Sep-22,0.5m Swath Transect,0.5,3,0,5,GRCA,Grateloupia californica,Wet,0,0.483,0.483,0.966
 Totem,14,9-Sep-22,0.5m Swath Transect,0.5,3,0,5,ZOMA,Zostera marina,Wet,0,13.719,13.719,27.438
@@ -543,7 +543,7 @@ Indian,15,10-Sep-22,0.5m Swath Transect,0.5,2,0,5,DEAC,Desmarestia aculeata,Wet,
 Indian,15,10-Sep-22,0.5m Swath Transect,0.5,2,0,5,CEPA,Ceramium pacificum,Wet,0,52.541,52.541,105.082
 Indian,15,10-Sep-22,1m Swath Transect,1,3,5,10,FUDI,Fucus distichus,Wet,30,88,58,58
 Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,FUDI,Fucus distichus,Wet,5305,68275,62970,125940
-Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,AHFA,Ahnfeltia fastigata,Wet,0,2.867,2.867,5.734
+Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,AHFA,Ahnfeltia fastigiata,Wet,0,2.867,2.867,5.734
 Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,DEAC,Desmarestia aculeata,Wet,0,31.725,31.725,63.45
 Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,SALA,Saccharina latissima,Wet,0,4.283,4.283,8.566
 Indian,15,10-Sep-22,0.5m Swath Transect,0.5,3,0,5,GRCA,Grateloupia californica,Wet,0,1.009,1.009,2.018

@@ -30,7 +30,7 @@ wrack_order <- factor(c("Green Algae", "Other Brown Algae", "Other Red Algae", "
 
 #Lumped macrophyte categories
 
-other_red_algae <- c("Ceramium pacificum","Cladophora sericea", "Halosacccion glandiforme", "Microcladia borealis","Pyropia spp.","Neorhodomela larix","Mastocarpus spp.","Chondracanthus exasperatus","Mazzaella phyllocarpa","Palmaria palmata","Opuntiella californica","Ahnfeltia fastigata","Dumontia alaskana","Endocladia muricata","Gloiopeltis furcata","Neorhodomela oregona","Neorhodomela spp.","Ptilota serrata","Odonthalia floccosa","Osmundea spectabilis","Polysiphonia pacifica","Grateloupia californica")
+other_red_algae <- c("Ceramium pacificum","Cladophora sericea", "Halosacccion glandiforme", "Microcladia borealis","Pyropia spp.","Neorhodomela larix","Mastocarpus spp.","Chondracanthus exasperatus","Mazzaella phyllocarpa","Palmaria palmata","Opuntiella californica","Ahnfeltia fastigiata","Dumontia alaskana","Endocladia muricata","Gloiopeltis furcata","Neorhodomela oregona","Neorhodomela spp.","Ptilota serrata","Odonthalia floccosa","Osmundea spectabilis","Polysiphonia pacifica","Grateloupia californica")
 
 other_brown_algae <- c("Pylaiella littoralis","Chordaria flagelliformis","Cymathaere triplicata","Saccharina latissima","Desmarestia aculeata","Leathesia marina","Nereocystis luetkeana")
 
