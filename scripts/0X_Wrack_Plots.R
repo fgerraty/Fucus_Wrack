@@ -26,7 +26,7 @@ site_order <- factor(c("Mosquito", "OldSitka", "Shotgun", "Cruise", "Halibut", "
 site_labels <- c("Mosquito", "Old Sitka", "Shotgun", "Cruise", "Halibut", "Magic", "Net Island", "Harbor", "Sandy", "Totem", "Indian", "Eagle", "Private", "Ferry", "Jamestown")
 
 #Wrack Species ordered from most to least total biomass
-wrack_order <- factor(c("Green Algae", "Other Brown Algae", "Other Red Algae", "Zostera marina", "Macrocystis pyrifera", "Fucus dischitus"), ordered = TRUE)
+wrack_order <- factor(c("Green Algae", "Other Brown Algae", "Other Red Algae", "Zostera marina", "Macrocystis pyrifera", "Fucus distichus"), ordered = TRUE)
 
 #Lumped macrophyte categories
 
@@ -37,7 +37,7 @@ other_brown_algae <- c("Pylaiella littoralis","Chordaria flagelliformis","Cymath
 green_algae <- c("Cladophora sericea","Ulva intestinalis","Chaetomorpha sp.","Ulva latuca","Ulva prolifera","Acrosiphonia coalita")
 
 #Wrack color palette
-wrack_colors <- c("Fucus dischitus" = "#E69F00", "Macrocystis pyrifera" = "#0072B2", "Green Algae" ="#009E73", "Other Red Algae" = "#D55E00", "Other Brown Algae" = "#56B4E9", "Zostera marina" = "#CC79A7")
+wrack_colors <- c("Fucus distichus" = "#E69F00", "Macrocystis pyrifera" = "#0072B2", "Green Algae" ="#009E73", "Other Red Algae" = "#D55E00", "Other Brown Algae" = "#56B4E9", "Zostera marina" = "#CC79A7")
 
 #################################################################
 # PART 3: Biomass and Species Composition Multi-Panel Plot ######
