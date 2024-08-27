@@ -311,6 +311,6 @@ f1_glm_plot <- ggplot(data = wrack_predictors, aes(x=beach_width, y=mean_wrack_b
   labs(x = "Intertidal Width (m)", y="Mean Wrack Biomass (kg / transect)")
 
 #Save plot
-ggsave("output/extra_figures/beach_width_wrack_glm.png", 
+ggsave("output/supp_figures/beach_width_wrack_glm.png", 
        f1_glm_plot,
        width = 8, height = 5, units = "in")

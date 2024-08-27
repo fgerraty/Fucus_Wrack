@@ -10,7 +10,6 @@
 ####################################
 
 #Import cleaned datasets from the "processed" data folder. 
-wrack_cover <- read_csv("data/processed/wrack_cover.csv")
 wrack_biomass <- read_csv("data/processed/wrack_biomass.csv")
 wrack_zonation <- read_csv("data/processed/wrack_zonation.csv")
 invertebrates <- read_csv("data/processed/invertebrates.csv")
