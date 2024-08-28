@@ -10,6 +10,7 @@
 ####################################
 
 #Import cleaned datasets from the "processed" data folder. 
+sites <- read_csv("data/processed/sites.csv")
 wrack_biomass <- read_csv("data/processed/wrack_biomass.csv")
 wrack_zonation <- read_csv("data/processed/wrack_zonation.csv")
 invertebrates <- read_csv("data/processed/invertebrates.csv")
@@ -205,4 +206,38 @@ ggsave("output/supp_figures/zonation_plot.png",
        zonation_plot,
        width = 8, height = 5, units = "in")
 
+###############################
+# PART 4: Substrate Plot ######
+###############################
   
+substrate_plot_df <- sites %>% 
+  dplyr::select(site, starts_with("percent_")) %>%
+  pivot_longer(
+    cols = starts_with("percent_"),
+    names_to = "substrate_type",
+    values_to = "percent_cover") %>%
+  mutate(
+    substrate_type = str_remove(substrate_type, "percent_"))
+
+
+substrate_plot <- ggplot(substrate_plot_df, aes(x = factor(site,levels=site_order),
+                              y = percent_cover, 
+                              fill = factor(substrate_type, 
+                                            levels = c("boulder", "cobble", "pebble", "granule", "sand")))) +
+  geom_bar(stat = "identity") +
+  labs(x = "Site",
+    y = "Proportion of Substrate Type",
+    fill = "Substrate Type") +
+  scale_fill_manual(values = c("#648FFF", "#785EF0", "#DC267F", "#FE6100", "#FFB000"))+
+  theme_few()+
+  theme(panel.border = element_rect(colour = "black", 
+                                    fill=NA, 
+                                    linewidth=1),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+  
+
+#Save plot
+ggsave("output/supp_figures/substrate_plot.png", 
+       substrate_plot,
+       width = 8.5, height = 3.5, units = "in")
+        
