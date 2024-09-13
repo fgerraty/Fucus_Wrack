@@ -330,6 +330,6 @@ f1_glmm_plot <- ggplot(data = f1_df, aes(x=beach_width))+
 f1_glmm_plot
 
 #Save plot
-ggsave("output/supp_figures/beach_width_wrack_glm.png", 
-       f1_glm_plot,
+ggsave("output/supp_figures/beach_width_wrack_glmm.png", 
+       f1_glmm_plot,
        width = 8, height = 5, units = "in")
