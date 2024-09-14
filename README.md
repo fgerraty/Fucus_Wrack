@@ -18,7 +18,7 @@ There are six R scripts associated with this repository run all console and data
 
 -   **05_Map.R** produces the map figure (Figure 1 in the manuscript).
 
--   **06_Wrack_Plots.R** produces figures 2A-D and figure S1.
+-   **06_Plots.R** produces figures 2A-D and figure S1.
 
 ------------------------------------------------------------------------
 
