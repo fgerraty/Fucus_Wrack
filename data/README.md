@@ -8,15 +8,15 @@ Gerraty, F.D. (2024) The *Fucus* flow: Broad beaches are hotspots of rockweed wr
 
 The "sites" dataset ([***data/processed/sites.csv***](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/processed/sites.csv)) contains site metadata and site-level environmental and biophysical predictors of wrack biomass.
 
-**Site and Survey Metadata** *(column name --- description)*
+**Site and Survey Metadata** *(column name - description)*
 
--   **site ---** unique site name
+-   **site -** unique site name
 
--   **latitude ---** decimal degrees
+-   **latitude -** decimal degrees
 
--   **longitude ---** decimal degrees
+-   **longitude -** decimal degrees
 
--   **sampling_date ---** date of wrack and biomass survey
+-   **sampling_date -** date of wrack and biomass survey
 
 **Environmental Data**
 
@@ -49,15 +49,15 @@ The "wrack biomass" dataset ([***data/processed/wrack_biomass.csv***](https://gi
 
 The wrack biomass dataset contains the following columns
 
--   **site** --- unique site name
+-   **site -** unique site name
 
--   **transect_number** --- transect ID at site
+-   **transect_number -** transect ID at site
 
--   **species_id** --- 4-letter ID code for wrack species/type.
+-   **species_id -** 4-letter ID code for wrack species/type.
 
--   **species ---** wrack species/genus/type.
+-   **species -** wrack species/genus/type.
 
--   **biomass** --- biomass of wrack species along 20m transect (in grams).
+-   **biomass -** biomass of wrack species along 20m transect (in grams).
 
 ## Wrack Zonation Dataset
 
@@ -67,64 +67,61 @@ The "wrack zonation" dataset ([***data/processed/wrack_zonation.csv***](https://
 
 The wrack zonation dataset contains the following columns:
 
--   **site** --- unique site name
+-   **site -** unique site name
 
--   **transect_number** --- transect ID at site
+-   **transect_number -** transect ID at site
 
--   **zone_start** --- start of zone (i.e. 0, 5, 10, or 15 meter mark)
+-   **zone_start -** start of zone (i.e. 0, 5, 10, or 15 meter mark)
 
--   **zone_end** --- end of zone (i.e. 5, 10, 15, or 20 meter mark)
+-   **zone_end -** end of zone (i.e. 5, 10, 15, or 20 meter mark)
 
--   **species_id** --- 4-letter ID code for wrack species/type.
+-   **species_id -** 4-letter ID code for wrack species/type.
 
--   **species ---** wrack species/genus/type.
+-   **species -** wrack species/genus/type.
 
--   biomass --- biomass of wrack species in transect zone (in grams).
+-   **biomass -** biomass of wrack species in transect zone (in grams).
 
 ## Invertebrates Dataset
 
 The "invertebrates" dataset ([***data/processed/invertebrates.csv***](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/processed/invertebrates.csv)) contains data for all invertebrates sampled in the study. The dataset contains the following columns:
 
--   **site** --- unique site name
+-   **site -** unique site name
 
--   **site_number** --- unique site number
+-   **site_number -** unique site number
 
--   **sampling_date** --- date of field sampling
+-   **sampling_date -** date of field sampling
 
--   **transect_number** --- transect ID at site
+-   **transect_number -** transect ID at site
 
--   **distance_from_upper_transect** --- distance (m) that sediment core was collected at from the upper transect (1-5)
+-   **distance_from_upper_transect -** distance (m) that sediment core was collected at from the upper transect (1-5)
 
--   **number_of_individuals_in_sample** --- number of invertebrates collected within the same sediment core. Note that there are several rows with a value of 0, indicating that a core was collected but that no invertebrates were present.
+-   **number_of_individuals_in_sample -** number of invertebrates collected within the same sediment core. Note that there are several rows with a value of 0, indicating that a core was collected but that no invertebrates were present.
 
--   **species_ID** --- unique ID for each invertebrate species/order group. Values are either "TRTR" for *Traskorchestia traskiana*, "ISOPOD" for isopods, "OTHER" for other invertebrates not identified to species, and "NA" for cores in which no invertebrates were collected.
+-   **species_ID -** unique ID for each invertebrate species/order group. Values are either "TRTR" for *Traskorchestia traskiana*, "ISOPOD" for isopods, "OTHER" for other invertebrates not identified to species, and "NA" for cores in which no invertebrates were collected.
 
--   **species** --- latin name for invertebrates identified to species (i.e. just *Traskorchestia traskiana)*
+-   **species -** latin name for invertebrates identified to species (i.e. just *Traskorchestia traskiana)*
 
--   **length** --- invertebrate length (mm)
+-   **length -** invertebrate length (mm)
 
--   **mass** --- invertebrate mass (grams)
+-   **mass -** invertebrate mass (grams)
 
--   **notes** --- miscellaneous notes about invertebrates and/or sediment cores.
+-   **notes -** miscellaneous notes about invertebrates and/or sediment cores.
 
 ## Invertebrate Summary Dataset
 
 The "invertebrate summary" dataset ([***data/processed/invertebrate_summary.csv***](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/processed/invertebrate_summary.csv)) contains transect-level summaries of invertebrates collected in the study. The dataset contains the following columns:
 
--   **site** --- unique site name
+-   **site -** unique site name
 
--   **transect_number** --- transect ID at site
+-   **transect_number -** transect ID at site
 
-```{=html}
-<!-- -->
-```
--   **species_ID** --- unique ID for each invertebrate species/order group. Values are either "TRTR" for *Traskorchestia traskiana*, "ISOPOD" for isopods, "OTHER" for other invertebrates not identified to species.
+-   **species_ID -** unique ID for each invertebrate species/order group. Values are either "TRTR" for *Traskorchestia traskiana*, "ISOPOD" for isopods, "OTHER" for other invertebrates not identified to species.
 
--   **species** --- latin name for invertebrates identified to species (i.e. just *Traskorchestia traskiana)*
+-   **species -** latin name for invertebrates identified to species (i.e. just *Traskorchestia traskiana)*
 
--   **number_invertebrates** --- count of total number of invertebrates (grouped by site, transect, and species_ID)
+-   **number_invertebrates -** count of total number of invertebrates (grouped by site, transect, and species_ID)
 
--   **biomass** --- measured and/or estimated biomass (see manuscript for details on biomass estimation) of invertebrates (grouped by site, transect, and species_ID).
+-   **biomass -** measured and/or estimated biomass (see manuscript for details on biomass estimation) of invertebrates (grouped by site, transect, and species_ID).
 
 ------------------------------------------------------------------------
 
