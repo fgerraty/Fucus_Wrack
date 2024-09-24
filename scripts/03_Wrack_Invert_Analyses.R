@@ -38,20 +38,21 @@ wrack_inverts <- left_join(wrack_biomass, invertebrate_summary, by = c("site", "
 
 # PART 2A: Wrack Biomass (log) vs Invert Biomass (log) ------------------------
 
-f1 <- lmer(log_invert_biomass ~ log_wrack_biomass +  (1|site),
+h1 <- lmer(log_invert_biomass ~ log_wrack_biomass +  (1|site),
             data = wrack_inverts)
 
 #Take a look at the model
-summary(f1)
+summary(h1)
+MuMIn::r.squaredGLMM(h1)
 
-# Check f1 assumptions with DHARMa package
-f1_res = simulateResiduals(f1)
-plot(f1_res, rank = T)
-testDispersion(f1_res)
-plotResiduals(f1_res, factor(wrack_inverts$site), xlab = "Site", main=NULL)
+# Check h1 assumptions with DHARMa package
+h1_res = simulateResiduals(h1)
+plot(h1_res, rank = T)
+testDispersion(h1_res)
+plotResiduals(h1_res, factor(wrack_inverts$site), xlab = "Site", main=NULL)
 
 
-f1_plot_df1 <- wrack_inverts %>% 
+h1_plot_df1 <- wrack_inverts %>% 
   group_by(site) %>% 
   mutate(mean_log_wrack = mean(log_wrack_biomass), 
          se_log_wrack = sd(log_wrack_biomass)/sqrt(3),
@@ -59,30 +60,30 @@ f1_plot_df1 <- wrack_inverts %>%
          se_log_invert = sd(log_invert_biomass)/sqrt(3)) %>% 
   left_join(., sites[,c("site", "beach_width")], by = "site")
 
-#Create dataframe for generating a line and error bar representing model f1
-f1_plot_df2=data.frame(log_wrack_biomass=seq(0,12,.1), site = "Totem")
+#Create dataframe for generating a line and error bar representing model h1
+h1_plot_df2=data.frame(log_wrack_biomass=seq(0,12,.1), site = "Totem")
 #predict probability of scavenging using the model
-f1_plot_df2$log_invert_biomass <- predict(f1,
-                                          newdata=f1_plot_df2,
+h1_plot_df2$log_invert_biomass <- predict(h1,
+                                          newdata=h1_plot_df2,
                                           type="response", 
                                           re.form=NA) #added extra step for mixed effects models
 
 #Code for generating confidence intervals for lmer model. 
 
 #function for bootstrapping
-pf1 = function(fit) {predict(fit, f1_plot_df2)} 
+ph1 = function(fit) {predict(fit, h1_plot_df2)} 
 #bootstrap to estimate uncertainty in predictions
-bb=bootMer(f1,nsim=1000,FUN=pf1,seed=999) 
+bb=bootMer(h1,nsim=1000,FUN=ph1,seed=999) 
 #Calculate SEs from bootstrap samples on link scale
-f1_plot_df2$SE=apply(bb$t, 2, sd) 
+h1_plot_df2$SE=apply(bb$t, 2, sd) 
 #predicted mean + 1 SE on response scale
-f1_plot_df2$pSE=f1_plot_df2$log_invert_biomass+f1_plot_df2$SE
+h1_plot_df2$pSE=h1_plot_df2$log_invert_biomass+h1_plot_df2$SE
 # predicted mean - 1 SE on response scale
-f1_plot_df2$mSE=f1_plot_df2$log_invert_biomass-f1_plot_df2$SE
+h1_plot_df2$mSE=h1_plot_df2$log_invert_biomass-h1_plot_df2$SE
 
 
 
-f1_plot <- ggplot(f1_plot_df1, 
+h1_plot <- ggplot(h1_plot_df1, 
                   aes(x=mean_log_wrack, y=mean_log_invert))+
   #Errorbars depicting +/- SE of mass measurements
   geom_errorbar(aes(ymin = mean_log_invert-se_log_invert, 
@@ -92,9 +93,9 @@ f1_plot <- ggplot(f1_plot_df1,
                     xmax = mean_log_wrack+se_log_wrack),
                 color = "grey40")+
   #Fitted model and SE uncertainty
-  geom_line(data = f1_plot_df2, 
+  geom_line(data = h1_plot_df2, 
             aes(x=log_wrack_biomass, y=log_invert_biomass))+
-  geom_ribbon(data = f1_plot_df2, 
+  geom_ribbon(data = h1_plot_df2, 
               mapping = aes(x=log_wrack_biomass, 
                             y = log_invert_biomass, 
                             ymin = mSE, ymax = pSE),
@@ -121,11 +122,11 @@ f1_plot <- ggplot(f1_plot_df1,
         legend.box.background = element_rect(colour = "black", 
                                              linewidth=1))
   
-f1_plot
+h1_plot
 
 #Save plot
 ggsave("output/extra_figures/wrack_invert_biomass.png", 
-       f1_plot,
+       h1_plot,
        width = 8, height = 5, units = "in")
 
 
