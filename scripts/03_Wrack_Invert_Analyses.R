@@ -43,6 +43,7 @@ h1 <- lmer(log_invert_biomass ~ log_wrack_biomass +  (1|site),
 
 #Take a look at the model
 summary(h1)
+#Calculate R2 values
 MuMIn::r.squaredGLMM(h1)
 
 # Check h1 assumptions with DHARMa package
