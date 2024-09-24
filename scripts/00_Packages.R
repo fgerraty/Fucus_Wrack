@@ -8,6 +8,6 @@
 # Part 1: Load Packages --------------------------------------------------
 
 # Load packages
-packages <- c("tidyverse", "lme4", "propagate","viridis", "sf", "rnaturalearth", "rnaturalearthdata", "ggspatial", "GGally", "ggthemes", "glmmTMB", "DHARMa", "gt", "AICcmodavg", "lmerTest")
+packages <- c("tidyverse", "lme4", "propagate","viridis", "sf", "rnaturalearth", "rnaturalearthdata", "ggspatial", "GGally", "ggthemes", "glmmTMB", "DHARMa", "gt", "AICcmodavg", "lmerTest", "performance")
 
 pacman::p_load(packages, character.only = TRUE); rm(packages)

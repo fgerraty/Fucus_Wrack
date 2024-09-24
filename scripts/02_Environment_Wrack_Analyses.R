@@ -282,6 +282,9 @@ gtsave(wrack_models_summary, "output/supp_figures/environmental_predictors_table
 # PART 5: Beach Width vs Wrack Biomass Plot ###########
 #######################################################
 
+#Assess fit of best fitting model: f1
+performance::r2(f1)
+
 # Create a new dataframe for predictions
 fitted_glmm <- data.frame(beach_width = seq(0, 300, 1),
                           site = "Totem")
