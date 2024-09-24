@@ -116,7 +116,7 @@ h1_plot <- ggplot(h1_plot_df1,
   theme_classic()+
   labs(y = "Invertebrate Biomass (g)\n ", 
        x = "Wrack Biomass (kg)\n",
-       color = "Beach\nWidth (m)\n")+
+       color = "Intertidal\nWidth (m)\n")+
   theme(axis.title = element_text(size=12, face="bold", colour = "black"),
         legend.position = c(0.88,.29),
         legend.key.size = unit(.8, 'cm'),
