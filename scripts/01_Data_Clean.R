@@ -68,6 +68,7 @@ TRTR_model <- nls(mass ~ I(b * length^3),
 
 #Take a look at the model (great fit)
 summary(TRTR_model)
+aomisc::R2nls(TRTR_model)
 
 #Create function that pulls coefficient estimate values from TRTR_model to predict the mass of TRTR amphipods based on their length.   
 predict_TRTR_mass <- function(length)
@@ -88,6 +89,7 @@ ISOPOD_model <- nls(mass ~ I(b * length^3),
 
 #Look at the model
 summary(ISOPOD_model)
+aomisc::R2nls(ISOPOD_model)
 
 #Create function that pulls coefficient estimate values from ISOPOD_model to predict the mass of isopods.  
 predict_ISOPOD_mass <- function(length)
