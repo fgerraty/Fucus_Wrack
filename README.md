@@ -1,6 +1,6 @@
-# The *Fucus* flow: Broad beaches are hotspots of rockweed wrack subsidies to shoreline invertebrates
+# The *Fucus* flow: Wide beaches increase rockweed wrack subsidies to shoreline invertebrates
 
-Gerraty, F.D. (2024) The *Fucus* flow: Broad beaches are hotspots of rockweed wrack subsidies to shoreline invertebrates. *In Review*
+Gerraty, F.D. (2024) The *Fucus* flow: Wide beaches increase rockweed wrack subsidies to shoreline invertebrates. *In Review*
 
 I examined the role of rockweed (*Fucus distichus*) as a spatial subsidy to unconsolidated beach food webs in Sitka Sound, Southeast Alaska. Here, I provide an outline of my analyses and provide a description of the scripts and datasets associated with this repository.
 
@@ -10,15 +10,15 @@ There are six R scripts associated with this repository run all console and data
 
 -   **00_Packages.R** loads every package that is needed in following scripts. After running this script, all following scripts can be run independently.
 
--   **01_Data_Clean.R** cleans and summarizes raw data files. This script also generates equations for length-mass relationships of the two primary invertebrate groups (amphipods and isopods) and produces the plots that form figure S2.
+-   **01_Data_Clean.R** cleans and summarizes raw data files. This script also generates equations for length-mass relationships of the two primary invertebrate groups (amphipods and isopods) and produces the plots that form Figure S2.
 
--   **02_Environment_Wrack_Analyses.R** conducts all analyses for investigating the best environmental predictors of wrack biomass. This script also generates figure S2 and tables S2-S3 in the manuscript.
+-   **02_Environment_Wrack_Analyses.R** conducts all analyses for investigating the best environmental predictors of wrack biomass. This script also generates Figure S2 and Tables S2-S3 in the manuscript.
 
--   **04_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates figure 3 in the manuscript.
+-   **04_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates Figure 3 in the manuscript.
 
 -   **05_Map.R** produces the map figure (Figure 1 in the manuscript).
 
--   **06_Plots.R** produces figures 2A-D and figure S1.
+-   **06_Plots.R** produces Figures 2A-D and Figure S1.
 
 ------------------------------------------------------------------------
 
