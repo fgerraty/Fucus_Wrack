@@ -1,8 +1,8 @@
-# The *Fucus* flow: Wide beaches increase rockweed wrack subsidies to shoreline invertebrates
+# The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates
 
-Gerraty, F.D. (2024) The *Fucus* flow: Wide beaches increase rockweed wrack subsidies to shoreline invertebrates. *In Review*
+F.D. Gerraty (2024). The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates. *In Review*
 
-I examined the role of rockweed (*Fucus distichus*) as a spatial subsidy to unconsolidated beach food webs in Sitka Sound, Southeast Alaska. Here, I provide an outline of my analyses and provide a description of the scripts and datasets associated with this repository.
+I examined the role of rockweed (*Fucus distichus*) as a spatial subsidy to gravel beach food webs in Sitka Sound, Southeast Alaska. Here, I provide an outline of my analyses and provide a description of the scripts and datasets associated with this repository.
 
 ------------------------------------------------------------------------
 
@@ -53,4 +53,4 @@ See "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/RE
 
 #### Folder "[scripts](https://github.com/fgerraty/Fucus_Wrack/tree/main/scripts)" houses R scripts associated with this repository.
 
-**Urban_Scavengers.Rproj** - R project for running scripts and directory in RStudio.
+**Fucus_Wrack.Rproj** - R project for running scripts and directory in RStudio.
