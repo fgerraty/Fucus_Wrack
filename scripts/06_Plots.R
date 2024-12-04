@@ -58,7 +58,7 @@ ggplot(wrack_biomass_summary, aes(x=factor(site, levels = site_order),
   geom_errorbar(aes(ymin = mean_wrack_biomass-SE,
                     ymax= mean_wrack_biomass+SE,
                     width = .2))+
-  labs(x="", y= "Wrack Biomass (kg per transect)\n(axis ticks on log scale)")+
+  labs(x="", y= "Wrack Biomass (kg / transect)\n(axis ticks on log scale)")+
   #Reorganize Y axis scale to place it on a log scale
   scale_y_log10(breaks = c(100, 1000, 10000, 100000), 
                 labels = c(".1", "1", "10", "100"))+
@@ -129,7 +129,7 @@ ggplot(invert_biomass_summary, aes(x=factor(site_name, levels = site_order),
   mean_invert_biomass-SE),
                     ymax= mean_invert_biomass+SE,
                     width = .2))+
-  labs(x="", y= "Invertebrate Biomass (g per transect)\n(axis ticks on log scale)")+
+  labs(x="", y= "Invertebrate Biomass (g / transect)\n(axis ticks on log scale)")+
   #Reorganize Y axis scale to place it on a log scale
   scale_y_continuous(transform = "log10", 
                      breaks = c(1,10,100,1000,10000), 

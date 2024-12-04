@@ -150,7 +150,7 @@ sitka <- ggplot(data=alaska_coastline)+
            expand = FALSE)+
   scale_x_continuous(breaks=c(-135.3, -135.35, -135.4))+ # Sets the x (longitude) labels 
   theme_bw()+
-  labs(fill= "Wrack\nBiomass\n(kg)") +
+  labs(fill= "Wrack\nBiomass\n ") +
   theme(legend.position = c(.95, .97),
         legend.justification = c("right", "top"),
         axis.title.x = element_blank(),

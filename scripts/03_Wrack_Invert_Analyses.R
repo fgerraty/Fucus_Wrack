@@ -114,8 +114,8 @@ h1_plot <- ggplot(h1_plot_df1,
     labels = c(.15, 1.5, 15, 150))+
   coord_cartesian(xlim = c(3, 12), ylim = c(-9, 6))+
   theme_classic()+
-  labs(y = "Invertebrate Biomass (g)\n ", 
-       x = "Wrack Biomass (kg)\n",
+  labs(y = "Invertebrate Biomass (g / transect)\n ", 
+       x = "Wrack Biomass (kg / transect)\n",
        color = "Intertidal\nWidth (m)\n")+
   theme(axis.title = element_text(size=12, face="bold", colour = "black"),
         legend.position = c(0.88,.29),
