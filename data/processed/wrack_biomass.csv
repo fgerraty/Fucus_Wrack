@@ -5,7 +5,7 @@ Cruise,1,GRCA,Grateloupia californica,10.034
 Cruise,1,MAPY,Macrocystis pyrifera,435
 Cruise,1,NELA,Neorhodomela larix,2.585
 Cruise,1,ZOMA,Zostera marina,58
-Cruise,2,AHFA,Ahnfeltia fastigata,2.575
+Cruise,2,AHFA,Ahnfeltia fastigiata,2.575
 Cruise,2,FUDI,Fucus distichus,6559.5
 Cruise,2,GRCA,Grateloupia californica,7.0329999999999995
 Cruise,2,MAPY,Macrocystis pyrifera,2707
@@ -123,7 +123,7 @@ Indian,2,PAPA,Palmaria palmata,0.106
 Indian,2,PYRO,Pyropia spp.,11.124
 Indian,2,ULLA,Ulva latuca,142.164
 Indian,2,ZOMA,Zostera marina,25.084
-Indian,3,AHFA,Ahnfeltia fastigata,5.734
+Indian,3,AHFA,Ahnfeltia fastigiata,5.734
 Indian,3,DEAC,Desmarestia aculeata,63.45
 Indian,3,FUDI,Fucus distichus,125998
 Indian,3,GRCA,Grateloupia californica,2.018
@@ -131,13 +131,13 @@ Indian,3,NEOX,Neorhodomela spp.,1.534
 Indian,3,SALA,Saccharina latissima,8.566
 Indian,3,ULLA,Ulva latuca,51.63
 Indian,3,ZOMA,Zostera marina,30.132
-Jamestown,1,AHFA,Ahnfeltia fastigata,1.507
+Jamestown,1,AHFA,Ahnfeltia fastigiata,1.507
 Jamestown,1,FUDI,Fucus distichus,3155
 Jamestown,1,ZOMA,Zostera marina,23.5
 Jamestown,2,FUDI,Fucus distichus,895.9
 Jamestown,2,PYLI,Pylaiella littoralis,0.035
 Jamestown,2,ZOMA,Zostera marina,2
-Jamestown,3,AHFA,Ahnfeltia fastigata,2.765
+Jamestown,3,AHFA,Ahnfeltia fastigiata,2.765
 Jamestown,3,FUDI,Fucus distichus,2470
 Jamestown,3,ZOMA,Zostera marina,10.75
 Magic,1,DEAC,Desmarestia aculeata,260
@@ -165,7 +165,7 @@ Mosquito,1,POPA,Polysiphonia pacifica,4.92
 Mosquito,1,ULIN,Ulva intestinalis,0.7939999999999999
 Mosquito,1,ULLA,Ulva latuca,2.434
 Mosquito,1,ZOMA,Zostera marina,50.958
-Mosquito,2,AHFA,Ahnfeltia fastigata,0.163
+Mosquito,2,AHFA,Ahnfeltia fastigiata,0.163
 Mosquito,2,DEAC,Desmarestia aculeata,0.212
 Mosquito,2,FUDI,Fucus distichus,6025.5
 Mosquito,2,GRCA,Grateloupia californica,13.236
@@ -175,7 +175,7 @@ Mosquito,2,NELA,Neorhodomela larix,1.864
 Mosquito,2,POPA,Polysiphonia pacifica,2.8
 Mosquito,2,ULIN,Ulva intestinalis,1.3479999999999999
 Mosquito,2,ZOMA,Zostera marina,44.208
-Mosquito,3,AHFA,Ahnfeltia fastigata,1.624
+Mosquito,3,AHFA,Ahnfeltia fastigiata,1.624
 Mosquito,3,FUDI,Fucus distichus,5819
 Mosquito,3,GRCA,Grateloupia californica,13.572
 Mosquito,3,MAST,Mastocarpus spp.,1.376
@@ -229,7 +229,7 @@ OldSitka,3,PYLI,Pylaiella littoralis,38.361000000000004
 OldSitka,3,ULIN,Ulva intestinalis,5.368
 OldSitka,3,ULPR,Ulva prolifera,6.869
 OldSitka,3,ZOMA,Zostera marina,4.719
-Private,1,AHFA,Ahnfeltia fastigata,0.786
+Private,1,AHFA,Ahnfeltia fastigiata,0.786
 Private,1,CHEX,Chondracanthus exasperatus,1.418
 Private,1,DEAC,Desmarestia aculeata,55
 Private,1,FUDI,Fucus distichus,8404
@@ -296,7 +296,7 @@ Shotgun,3,MAPY,Macrocystis pyrifera,105
 Shotgun,3,ULLA,Ulva latuca,6.451
 Shotgun,3,ZOMA,Zostera marina,77.18799999999999
 Totem,1,ACCO,Acrosiphonia coalita,1.306
-Totem,1,AHFA,Ahnfeltia fastigata,1.602
+Totem,1,AHFA,Ahnfeltia fastigiata,1.602
 Totem,1,DEAC,Desmarestia aculeata,10.957
 Totem,1,FUDI,Fucus distichus,37483
 Totem,1,NELA,Neorhodomela larix,4.627
@@ -308,7 +308,7 @@ Totem,2,HAGL,Halosacccion glandiforme,4.371
 Totem,2,ULLA,Ulva latuca,0.356
 Totem,2,ZOMA,Zostera marina,74.15199999999999
 Totem,3,ACCO,Acrosiphonia coalita,19.662000000000003
-Totem,3,AHFA,Ahnfeltia fastigata,17.682
+Totem,3,AHFA,Ahnfeltia fastigiata,17.682
 Totem,3,FUDI,Fucus distichus,69504
 Totem,3,GRCA,Grateloupia californica,14.06
 Totem,3,NELA,Neorhodomela larix,2.847
