@@ -77,7 +77,7 @@ ggsave("output/extra_figures/wrack_biomass_panel.png",
        width = 8.5, height = 3.25, units = "in")
 
 
-# Panel B: Wrack Proportions per Species Plot ####
+# Panel B: Wrack Species Biomass Proportions per Site Plot ####
 
 wrack_species_breakdown <- wrack_biomass %>% 
   mutate(species_lumped = if_else(species %in% other_red_algae, 
@@ -145,7 +145,7 @@ ggplot(invert_biomass_summary, aes(x=factor(site_name, levels = site_order),
 ggsave("output/extra_figures/invert_biomass_panel.png", 
        width = 8.9, height = 3.25, units = "in")
 
-# Panel D: Invertebrate Biomass Species Proportions ####
+# Panel D: Invertebrate Species Biomass Proportions per Site Plot ####
 
 invert_species_breakdown <- invertebrate_summary %>% 
   group_by(site_name, species_ID) %>% 
@@ -188,12 +188,15 @@ zonation_plot_df <- wrack_zonation %>%
                           zone_start == 15 ~ "15-20",
                           TRUE ~ NA_character_)) %>% 
   group_by(zone, species_lumped) %>% 
-  summarise(biomass = sum(biomass), .groups = "drop")
+  summarise(biomass = sum(biomass), .groups = "drop") %>% 
+  mutate(zone = factor(zone, levels = c("0-5","5-10","10-15","15-20"))) 
+  
 
 zonation_plot <- ggplot(zonation_plot_df, aes(x=zone, y=biomass, fill=factor(species_lumped, 
                                                              levels = wrack_order)))+
   geom_col()+
   scale_fill_manual(values = wrack_colors)+
+  #Change y axis labels to kg (from g)
   scale_y_continuous(labels = function(x) x / 1000) +
   labs(x = "Transect Zone (m)", y = "Wrack biomass (kg)", fill = "Species")+
   theme_few()+
