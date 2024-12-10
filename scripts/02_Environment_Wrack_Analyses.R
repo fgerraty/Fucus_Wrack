@@ -148,6 +148,8 @@ g2_res = simulateResiduals(g2)
 plot(g2_res, rank = T)
 testDispersion(g2_res)
 
+#Check collinearity with performance package
+check_collinearity(g2)
 
 # Model G3: Biophysical Site Variables ####
 
@@ -160,6 +162,10 @@ summary(g3)
 g3_res = simulateResiduals(g3)
 plot(g3_res, rank = T)
 testDispersion(g3_res)
+
+#Check collinearity with performance package
+check_collinearity(g3)
+
 
 # Model G4: Intertidal Width + Climatic Variables ####
 
@@ -175,6 +181,9 @@ g4_res = simulateResiduals(g4)
 plot(g4_res, rank = T)
 testDispersion(g4_res)
 
+#Check collinearity with performance package
+check_collinearity(g4)
+
 # Model G5: Intertidal Width + Biophysical Site Variables ####
 
 g5 <- glmmTMB(wrack_biomass~aspect+slope_mean+wave_exposure+
@@ -187,6 +196,9 @@ summary(g5)
 g5_res = simulateResiduals(g5)
 plot(g5_res, rank = T)
 testDispersion(g5_res)
+
+#Check collinearity with performance package
+check_collinearity(g5)
 
 
 # Model G6: Biophysical Site Variables + Climatic Variables ####
@@ -204,6 +216,26 @@ g6_res = simulateResiduals(g6)
 plot(g6_res, rank = T)
 testDispersion(g6_res)
 
+#Check collinearity with performance package
+check_collinearity(g6)
+
+#Drop high_tide variable from this model due to high VIF
+g6a <- glmmTMB(wrack_biomass~
+                aspect+slope_mean+wave_exposure+ #Site variables
+                wind_direction+wind_speed+wave_height+ #Climate variables
+                wave_period + (1|site),
+              data = wrack_predictors, 
+              family=Gamma(link = "log"))
+summary(g6a)
+
+# Check assumptions with DHARMa package
+g6a_res = simulateResiduals(g6a)
+plot(g6a_res, rank = T)
+testDispersion(g6a_res)
+
+#Check collinearity with performance package
+check_collinearity(g6a)
+
 
 # Model G7: Intertidal Width + Biophysical Site Variables + Climatic Variables ####
 
@@ -220,12 +252,30 @@ g7_res = simulateResiduals(g7)
 plot(g7_res, rank = T)
 testDispersion(g7_res)
 
+#Check collinearity with performance package
+check_collinearity(g7)
 
+#Drop high_tide variable from this model due to high VIF
 
+g7a <- glmmTMB(wrack_biomass~ beach_width+ #Intertidal width
+                aspect+slope_mean+wave_exposure+ #biophysical site variables
+                wind_direction+wind_speed+wave_height+ #Climate variables
+                wave_period + (1|site),
+              data = wrack_predictors, 
+              family=Gamma(link = "log"))
+summary(g7a)
+
+# Check assumptions with DHARMa package
+g7a_res = simulateResiduals(g7a)
+plot(g7a_res, rank = T)
+testDispersion(g7a_res)
+
+#Check collinearity with performance package
+check_collinearity(g7a)
 
 # Compare Models ####
 
-all_wrack_models <- aictab(cand.set=list(g1, g2, g3, g4, g5, g6, g7, f4),
+all_wrack_models <- aictab(cand.set=list(g1, g2, g3, g4, g5, g6a, g7a, f4),
                            modnames=(c("Intertidal Width",
                                        "Climatic Variables", 
                                        "Biophysical Site Variables",
@@ -241,10 +291,10 @@ all_wrack_models <- aictab(cand.set=list(g1, g2, g3, g4, g5, g6, g7, f4),
                          "Intertidal Width*** + Aspect + Slope + Wave Exposure",
                          "Intertidal Width* + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide", 
                          "Null",
-                         "Wind Direction* + Wind Speed* + Wave Height* + Wave Period + High Tide*", 
-                         "Intertidal Width + Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide",
+                         "Wind Direction* + Wind Speed* + Wave Height*** + Wave Period + High Tide*", 
+                         "Intertidal Width* + Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed + Wave Height + Wave Period",
                          "Aspect + Slope + Wave Exposure",
-                         "Aspect + Slope + Wave Exposure + Wind Direction* + Wind Speed + Wave Height*** + Wave Period + High Tide*")) %>% 
+                         "Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed* + Wave Height* + Wave Period")) %>% 
   relocate(model_terms, .after=Modnames)
 
 
