@@ -14,11 +14,11 @@ There are six R scripts associated with this repository run all console and data
 
 -   **02_Environment_Wrack_Analyses.R** conducts all analyses for investigating the best environmental predictors of wrack biomass. This script also generates Figure S2 and Tables S2-S3 in the manuscript.
 
--   **04_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates Figure 3 in the manuscript.
+-   **03_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates Figure 3 in the manuscript.
 
--   **05_Map.R** produces the map figure (Figure 1 in the manuscript). Note that this script depends on a shapefile of the Alaska Coastline that is too large to push to GitHub. For details on how to download and organize the shapefile in order to reproduce Figure 1, see the "[Alaska Shapefile](https://github.com/fgerraty/Fucus_Wrack/tree/main/data#alaska-shapefile)" section in the "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/README.md)".
+-   **04_Map.R** produces the map figure (Figure 1 in the manuscript). Note that this script depends on a shapefile of the Alaska Coastline that is too large to push to GitHub. For details on how to download and organize the shapefile in order to reproduce Figure 1, see the "[Alaska Shapefile](https://github.com/fgerraty/Fucus_Wrack/tree/main/data#alaska-shapefile)" section in the "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/README.md)".
 
--   **06_Plots.R** produces Figures 2A-D and Figure S1.
+-   **05_Plots.R** produces Figures 2A-D and Figure S1.
 
 ------------------------------------------------------------------------
 
@@ -46,9 +46,9 @@ See "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/RE
 
 -   Folder [**extra_figures**](https://github.com/fgerraty/Fucus_Wrack/tree/main/output/extra_figures) containing supporting figures not included in manuscript main text or supplemental information
 
-    -   Alaska.pdf, Sitka.pdf, Southeast.pdf - outputs from **05_Map.R** script, combined in Illustrator to make final map (Fig. 1) for publication.
+    -   Alaska.pdf, Sitka.pdf, Southeast.pdf - outputs from **04_Map.R** script, combined in Illustrator to make final map (Fig. 1) for publication.
     -   ISOPOD_length_mass.png, TRTR_length_mass.png - outputs from **01_Data_Clean.R** script, combined in Illustrator to make final Figure S2.
-    -   wrack_biomass_panel.png, wrack_species_panel.png, invert_biomass_panel.png, invert_species_panel.png - outputs from **06_Plots.R** script, combined in Illustrator to make Figure 2.
+    -   wrack_biomass_panel.png, wrack_species_panel.png, invert_biomass_panel.png, invert_species_panel.png - outputs from **05_Plots.R** script, combined in Illustrator to make Figure 2.
     -   wrack_invert_biomass.png - output from **03_Wrack_Invert_Analyses.R** script, tweaked in Illustrator to make Figure 3.
 
 #### Folder "[scripts](https://github.com/fgerraty/Fucus_Wrack/tree/main/scripts)" houses R scripts associated with this repository.
