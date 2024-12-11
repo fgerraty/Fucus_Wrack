@@ -46,10 +46,10 @@ See "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/RE
 
 -   Folder [**extra_figures**](https://github.com/fgerraty/Fucus_Wrack/tree/main/output/extra_figures) containing supporting figures not included in manuscript main text or supplemental information
 
-    -   Alaska.pdf, Sitka.pdf, Southeast.pdf - outputs from **0X_Map.R** script, combined in Illustrator to make final map (Fig. 1) for publication.
+    -   Alaska.pdf, Sitka.pdf, Southeast.pdf - outputs from **05_Map.R** script, combined in Illustrator to make final map (Fig. 1) for publication.
     -   ISOPOD_length_mass.png, TRTR_length_mass.png - outputs from **01_Data_Clean.R** script, combined in Illustrator to make final Figure S2.
-    -   wrack_biomass_panel.png, wrack_species_panel.png, invert_biomass_panel.png, invert_species_panel.png - outputs from **0X_Wrack_Plots.R** script, combined in Illustrator to make Figure 2.
-    -   wrack_invert_biomass.png - output from **04_Wrack_Invert_Analyses.R** script, tweaked in Illustrator to make Figure 3.
+    -   wrack_biomass_panel.png, wrack_species_panel.png, invert_biomass_panel.png, invert_species_panel.png - outputs from **06_Plots.R** script, combined in Illustrator to make Figure 2.
+    -   wrack_invert_biomass.png - output from **03_Wrack_Invert_Analyses.R** script, tweaked in Illustrator to make Figure 3.
 
 #### Folder "[scripts](https://github.com/fgerraty/Fucus_Wrack/tree/main/scripts)" houses R scripts associated with this repository.
 

@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Gerraty, F.D. (2024) The *Fucus* flow: Broad beaches are hotspots of rockweed wrack subsidies to shoreline invertebrates. *In Review*
+F.D. Gerraty (2024). The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates. *In Review*
 
 ------------------------------------------------------------------------
 
