@@ -16,7 +16,7 @@ There are six R scripts associated with this repository run all console and data
 
 -   **04_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates Figure 3 in the manuscript.
 
--   **05_Map.R** produces the map figure (Figure 1 in the manuscript).
+-   **05_Map.R** produces the map figure (Figure 1 in the manuscript). Note that this script depends on a shapefile of the Alaska Coastline that is too large to push to GitHub. For details on how to download and organize the shapefile in order to reproduce Figure 1, see the "[Alaska Shapefile](https://github.com/fgerraty/Fucus_Wrack/tree/main/data#alaska-shapefile)" section in the "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/README.md)".
 
 -   **06_Plots.R** produces Figures 2A-D and Figure S1.
 
