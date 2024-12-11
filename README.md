@@ -12,13 +12,13 @@ There are six R scripts associated with this repository run all console and data
 
 -   **01_Data_Clean.R** cleans and summarizes raw data files. This script also generates equations for length-mass relationships of the two primary invertebrate groups (amphipods and isopods) and produces the plots that form Figure S2.
 
--   **02_Environment_Wrack_Analyses.R** conducts all analyses for investigating the best environmental predictors of wrack biomass. This script also generates Figure S2 and Tables S2-S3 in the manuscript.
+-   **02_Environment_Wrack_Analyses.R** conducts all analyses for investigating the best environmental predictors of wrack biomass. This script also generates Figure S4 and Tables S2-S3 in the manuscript.
 
 -   **03_Wrack_Invert_Analyses.R** assesses the relationship between wrack and invertebrate biomass. This script also generates Figure 3 in the manuscript.
 
 -   **04_Map.R** produces the map figure (Figure 1 in the manuscript). Note that this script depends on a shapefile of the Alaska Coastline that is too large to push to GitHub. For details on how to download and organize the shapefile in order to reproduce Figure 1, see the "[Alaska Shapefile](https://github.com/fgerraty/Fucus_Wrack/tree/main/data#alaska-shapefile)" section in the "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/README.md)".
 
--   **05_Plots.R** produces Figures 2A-D and Figure S1.
+-   **05_Plots.R** produces Figures 2A-D, Figure S1, and Figure S3.
 
 ------------------------------------------------------------------------
 
@@ -40,9 +40,11 @@ See "[data dictionary](https://github.com/fgerraty/Fucus_Wrack/blob/main/data/RE
 
     -   zonation_plot.png - Figure S1
     -   invert_length_mass.png - Figure S2
-    -   beach_width_wrack_glm.png - Figure S3
-    -   donor_habitat_models_table.png - Table S2
-    -   environmental_predictors_table.png - Table S3
+    -   substrate_plot.png - Figure S3
+    -   beach_width_wrack_glm.png - Figure S4
+    -   donor_habitat_models_table.pdf - Table S2
+    -   environmental_predictors_table.pdf - Table S3
+    -   environmental_predictors_table2.png - wide version of Table S3
 
 -   Folder [**extra_figures**](https://github.com/fgerraty/Fucus_Wrack/tree/main/output/extra_figures) containing supporting figures not included in manuscript main text or supplemental information
 
