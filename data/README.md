@@ -16,7 +16,7 @@ The "sites" dataset ([***data/processed/sites.csv***](https://github.com/fgerrat
 
 -   **longitude -** decimal degrees
 
--   **sampling_date -** date of wrack and biomass survey
+-   **sampling_date -** date of wrack and invertebrate survey
 
 **Environmental Data**
 
