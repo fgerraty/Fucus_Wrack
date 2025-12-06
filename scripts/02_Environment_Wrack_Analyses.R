@@ -15,14 +15,23 @@ wrack_biomass <- read_csv("data/processed/wrack_biomass.csv") %>%
   group_by(site, transect_number) %>% 
   summarise(wrack_biomass = sum(biomass))
 
-wrack_predictors <- left_join(sites, wrack_biomass, by = join_by(site))
+wrack_predictors_unscaled <- left_join(sites, wrack_biomass, by = join_by(site)) 
+
+wrack_predictors <- wrack_predictors_unscaled %>% 
+  dplyr::select(-percent_boulder, -percent_cobble, -percent_pebble, 
+                -percent_granule, -percent_sand) %>% 
+  relocate(wave_exposure, .after = last_col()) %>% 
+  mutate(across(
+    .cols = 5:14,          
+    .fns  = ~ if(is.numeric(.x)) as.numeric(scale(.x)) else .x)) %>% 
+  mutate(wave_exposure = factor(wave_exposure))
 
 
 ###########################################################
 # PART 2: Examine Collinearity of Predictors ##############
 ###########################################################
 
-ggpairs(wrack_predictors[,c(5:20)], #subset predictor columns at data for ggpairs function
+ggpairs(wrack_predictors[,c(5:14)], #subset predictor columns at data for ggpairs function
         switch="both")+ #labels on left and bottom of plot
   theme_few()+ #theme
   theme(strip.background = element_rect(fill = "white"), #replace background
@@ -31,9 +40,57 @@ ggpairs(wrack_predictors[,c(5:20)], #subset predictor columns at data for ggpair
 
 #The only predictors with high collinearity (R>.7) are the different measures of donor habitat. 
 
-############################################
-# PART 3: Donor Habitat Modelling ##########
-############################################
+######################################################
+# PART 3: Fit All Non-collinear Models  ##############
+######################################################
+
+#Extract predictor names
+predictors <- names(wrack_predictors)[c(5:14,17)]
+predictors
+
+
+#Generate all possible combinations of predictor variables
+all_models <- map(1:length(predictors), 
+                  ~ combn(predictors, ., simplify = FALSE)) %>% 
+  unlist(recursive = FALSE)
+
+
+#Create function to check collinearity among numeric predictors
+is_collinear <- function(vars, df, threshold = 0.7) {
+  
+  numeric_vars <- vars[sapply(df[, vars, drop = FALSE], is.numeric)]
+  
+  if (length(numeric_vars) < 2) return(FALSE)
+  
+  cor_mat <- cor(df[, numeric_vars, drop = FALSE], use = "pairwise.complete.obs")
+  any(abs(cor_mat[upper.tri(cor_mat)]) > threshold)
+}
+
+#Filter out models with collinear predictors
+non_collinear_sets <- keep(all_models, ~ !is_collinear(.x, wrack_predictors))
+
+# Define a model fitting function
+fit_model <- function(vars) {
+  # formula: additive predictors + random effect of site
+  fmla <- as.formula(
+    paste("wrack_biomass ~", paste(vars, collapse = " + "), "+ (1|site)")
+  )
+  # Gamma glm (log link) with glmmTMB
+  possibly(glmmTMB, otherwise = NULL)(fmla, data = wrack_predictors, family = Gamma(link = "log"))
+}
+
+# Fit all non-collinear models
+fitted_models <- map(non_collinear_sets, fit_model)
+
+#Model selection using AICc
+all_models_selection <- tibble(model.sel(fitted_models))
+
+top_models <- all_models_selection %>% 
+  filter(delta < 2)
+
+#####################################################
+# PART 4: Fitting and Assessing Top Models ##########
+#####################################################
 
 # Model F1: Intertidal Width ####
 
@@ -47,9 +104,12 @@ f1_res = simulateResiduals(f1)
 plot(f1_res, rank = T)
 testDispersion(f1_res)
 
+r2(f1) #R squared values
 
-# Model F2: Intertidal Area within 100m buffer ####
-f2 <- glmmTMB(wrack_biomass~buffer_100m + (1|site), 
+
+# Model F2: Intertidal Width + Wave Period ####
+
+f2 <- glmmTMB(wrack_biomass~beach_width + wave_period + (1|site), 
               data = wrack_predictors, 
               family=Gamma(link = "log"))
 summary(f2)
@@ -59,9 +119,11 @@ f2_res = simulateResiduals(f2)
 plot(f2_res, rank = T)
 testDispersion(f2_res)
 
+check_collinearity(f2)
 
-# Model F3: Intertidal Area within 200m buffer ####
-f3 <- glmmTMB(wrack_biomass~buffer_200m + (1|site), 
+# Model F3: Intertidal Width + Slope ####
+
+f3 <- glmmTMB(wrack_biomass~beach_width + slope_mean + (1|site), 
               data = wrack_predictors, 
               family=Gamma(link = "log"))
 summary(f3)
@@ -71,260 +133,35 @@ f3_res = simulateResiduals(f3)
 plot(f3_res, rank = T)
 testDispersion(f3_res)
 
-# Model F4: Null Model ####
+check_collinearity(f3)
 
-f4 <- glmmTMB(wrack_biomass~ 1 + (1|site), 
+# Model F4: Intertidal Width + Wave Exposure ####
+
+f4 <- glmmTMB(wrack_biomass~beach_width + wave_exposure + (1|site), 
               data = wrack_predictors, 
               family=Gamma(link = "log"))
 summary(f4)
 
+# Check assumptions with DHARMa package
+f4_res = simulateResiduals(f4)
+plot(f4_res, rank = T)
+testDispersion(f4_res)
 
+check_collinearity(f4)
 
-donor_habitat_models <- aictab(cand.set=list(f1, f2, f3, f4),
-                               modnames=(c("Intertidal Width***",
-                                           "Intertidal Area Within 100m Buffer",
-                                           "Intertidal Area Within 200m Buffer*", 
-                                           "null")),
-                               second.ord=F) %>% 
-  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), 
-                \(x) round(x, digits = 3)))
+# Model F5: Intertidal Width + Wind Direction ####
 
-
-donor_habitat_models
-
-#Summary Table
-
-donor_models_gt <- gt(donor_habitat_models)
-
-donor_models_summary <- 
-  donor_models_gt |>
-  tab_header(
-    title = "Donor Habitat Predictors of Wrack Biomass",
-    subtitle = "Generalized linear mixed-effects models with gamma distributions, log link functions, and site as a random effect (***p<.005, *p<.05)"
-  ) |>
-  cols_label(Modnames = md("**Model Name**"),
-             K = md("**K**"),
-             AIC = md("**AIC**"),
-             Delta_AIC = md("**∆AIC**"),
-             ModelLik = md("**Model Likelihood**"),
-             AICWt = md("**AIC Weight**"),
-             LL = md("**Log Likelihood**"),
-             Cum.Wt = md("**Cumulative Weight**")) 
-donor_models_summary
-
-
-#Export high-quality table
-gtsave(donor_models_summary, "output/supp_figures/donor_habitat_models_table.pdf")
-
-
-##############################################
-# PART 4: All Predictors Modelling ###########
-##############################################
-
-
-# Model G1: Intertidal Width ####
-
-g1 <- glmmTMB(wrack_biomass~beach_width + (1|site), 
+f5 <- glmmTMB(wrack_biomass~beach_width + wind_direction + (1|site), 
               data = wrack_predictors, 
               family=Gamma(link = "log"))
-summary(g1)
+summary(f5)
 
 # Check assumptions with DHARMa package
-g1_res = simulateResiduals(g1)
-plot(g1_res, rank = T)
-testDispersion(g1_res)
+f5_res = simulateResiduals(f5)
+plot(f5_res, rank = T)
+testDispersion(f5_res)
 
-
-
-# Model G2: Climatic Variables ####
-
-g2 <- glmmTMB(wrack_biomass~wind_direction+wind_speed+wave_height+wave_period+high_tide + (1|site), 
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g2)
-
-# Check assumptions with DHARMa package
-g2_res = simulateResiduals(g2)
-plot(g2_res, rank = T)
-testDispersion(g2_res)
-
-#Check collinearity with performance package
-check_collinearity(g2)
-
-# Model G3: Biophysical Site Variables ####
-
-g3 <- glmmTMB(wrack_biomass~aspect+slope_mean+wave_exposure + (1|site), 
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g3)
-
-# Check assumptions with DHARMa package
-g3_res = simulateResiduals(g3)
-plot(g3_res, rank = T)
-testDispersion(g3_res)
-
-#Check collinearity with performance package
-check_collinearity(g3)
-
-
-# Model G4: Intertidal Width + Climatic Variables ####
-
-g4 <- glmmTMB(wrack_biomass~wind_direction+wind_speed+wave_height+
-                wave_period+high_tide +
-                beach_width + (1|site), 
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g4)
-
-# Check assumptions with DHARMa package
-g4_res = simulateResiduals(g4)
-plot(g4_res, rank = T)
-testDispersion(g4_res)
-
-#Check collinearity with performance package
-check_collinearity(g4)
-
-# Model G5: Intertidal Width + Biophysical Site Variables ####
-
-g5 <- glmmTMB(wrack_biomass~aspect+slope_mean+wave_exposure+
-                beach_width + (1|site), 
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g5)
-
-# Check assumptions with DHARMa package
-g5_res = simulateResiduals(g5)
-plot(g5_res, rank = T)
-testDispersion(g5_res)
-
-#Check collinearity with performance package
-check_collinearity(g5)
-
-
-# Model G6: Biophysical Site Variables + Climatic Variables ####
-
-g6 <- glmmTMB(wrack_biomass~
-                aspect+slope_mean+wave_exposure+ #Site variables
-                wind_direction+wind_speed+wave_height+ #Climate variables
-                wave_period+high_tide + (1|site),
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g6)
-
-# Check assumptions with DHARMa package
-g6_res = simulateResiduals(g6)
-plot(g6_res, rank = T)
-testDispersion(g6_res)
-
-#Check collinearity with performance package
-check_collinearity(g6)
-
-#Drop high_tide variable from this model due to high VIF
-g6a <- glmmTMB(wrack_biomass~
-                aspect+slope_mean+wave_exposure+ #Site variables
-                wind_direction+wind_speed+wave_height+ #Climate variables
-                wave_period + (1|site),
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g6a)
-
-# Check assumptions with DHARMa package
-g6a_res = simulateResiduals(g6a)
-plot(g6a_res, rank = T)
-testDispersion(g6a_res)
-
-#Check collinearity with performance package
-check_collinearity(g6a)
-
-
-# Model G7: Intertidal Width + Biophysical Site Variables + Climatic Variables ####
-
-g7 <- glmmTMB(wrack_biomass~ beach_width+ #Intertidal width
-                aspect+slope_mean+wave_exposure+ #biophysical site variables
-                wind_direction+wind_speed+wave_height+ #Climate variables
-                wave_period+high_tide + (1|site),
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g7)
-
-# Check assumptions with DHARMa package
-g7_res = simulateResiduals(g7)
-plot(g7_res, rank = T)
-testDispersion(g7_res)
-
-#Check collinearity with performance package
-check_collinearity(g7)
-
-#Drop high_tide variable from this model due to high VIF
-
-g7a <- glmmTMB(wrack_biomass~ beach_width+ #Intertidal width
-                aspect+slope_mean+wave_exposure+ #biophysical site variables
-                wind_direction+wind_speed+wave_height+ #Climate variables
-                wave_period + (1|site),
-              data = wrack_predictors, 
-              family=Gamma(link = "log"))
-summary(g7a)
-
-# Check assumptions with DHARMa package
-g7a_res = simulateResiduals(g7a)
-plot(g7a_res, rank = T)
-testDispersion(g7a_res)
-
-#Check collinearity with performance package
-check_collinearity(g7a)
-
-# Compare Models ####
-
-all_wrack_models <- aictab(cand.set=list(g1, g2, g3, g4, g5, g6a, g7a, f4),
-                           modnames=(c("Intertidal Width",
-                                       "Climatic Variables", 
-                                       "Biophysical Site Variables",
-                                       "Intertidal Width + Climatic Variables", 
-                                       "Intertidal Width + Biophysical Site Variables",
-                                       "Biophysical Site Variables + Climatic Variables",
-                                       "Intertidal Width + Biophysical Site Variables + Climatic Variables",
-                                       "Null" 
-                           )),
-                           second.ord=F)%>% 
-  mutate(across(c('AIC', 'Delta_AIC', "ModelLik", "AICWt", "LL", "Cum.Wt"), round, digits = 3),
-         model_terms = c("Intertidal Width***",
-                         "Intertidal Width*** + Aspect + Slope + Wave Exposure",
-                         "Intertidal Width* + Wind Direction + Wind Speed + Wave Height + Wave Period + High Tide", 
-                         "Null",
-                         "Wind Direction* + Wind Speed* + Wave Height*** + Wave Period + High Tide*", 
-                         "Intertidal Width* + Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed + Wave Height + Wave Period",
-                         "Aspect + Slope + Wave Exposure",
-                         "Aspect + Slope + Wave Exposure + Wind Direction + Wind Speed* + Wave Height* + Wave Period")) %>% 
-  relocate(model_terms, .after=Modnames)
-
-
-
-#Table S7: Summary Table -------------------------------
-
-wrack_models_gt <- gt(all_wrack_models)
-
-wrack_models_summary <- 
-  wrack_models_gt |>
-  tab_header(
-    title = "Environmental Predictors of Wrack Biomass",
-    subtitle = "Generalized linear mixed-effects models with gamma distributions, log link functions, and site as a random effect (***p<.005, *p<.05)"
-  ) |>
-  cols_label(Modnames = md("**Model Name**"),
-             model_terms = md("**Model Terms**"),
-             K = md("**K**"),
-             AIC = md("**AIC**"),
-             Delta_AIC = md("**∆AIC**"),
-             ModelLik = md("**Model Likelihood**"),
-             AICWt = md("**AIC Weight**"),
-             LL = md("**Log Likelihood**"),
-             Cum.Wt = md("**Cumulative Weight**"))
-wrack_models_summary
-
-
-#Export high-quality table
-gtsave(wrack_models_summary, "output/supp_figures/environmental_predictors_table.pdf")
-
-
+check_collinearity(f5)
 
 
 
@@ -332,7 +169,14 @@ gtsave(wrack_models_summary, "output/supp_figures/environmental_predictors_table
 # PART 5: Beach Width vs Wrack Biomass Plot ###########
 #######################################################
 
+# Model F1: Intertidal Width ####
+
+f1 <- glmmTMB(wrack_biomass~beach_width + (1|site), 
+              data = wrack_predictors_unscaled, 
+              family=Gamma(link = "log"))
+
 #Assess fit of best fitting model: f1
+summary(f1)
 performance::r2(f1)
 
 # Create a new dataframe for predictions
@@ -362,7 +206,7 @@ fitted_glmm$mSE=exp(fitted_glmm$pred_wrack_biomass_link-fitted_glmm$SE)
 
 
 
-f1_df <- wrack_predictors %>% 
+f1_df <- wrack_predictors_unscaled %>% 
   group_by(site, beach_width) %>% 
   summarise(mean_wrack_biomass = mean(wrack_biomass), 
             se_wrack_biomass = sd(wrack_biomass)/sqrt(length(wrack_biomass)))
@@ -383,6 +227,6 @@ f1_glmm_plot <- ggplot(data = f1_df, aes(x=beach_width))+
 f1_glmm_plot
 
 #Save plot
-ggsave("output/supp_figures/beach_width_wrack_glmm.png", 
+ggsave("output/extra_figures/beach_width_wrack_glmm.png", 
        f1_glmm_plot,
        width = 8, height = 5, units = "in")

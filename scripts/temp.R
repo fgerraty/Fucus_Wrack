@@ -1,12 +1,12 @@
 
 wrack_scaled <- wrack_predictors %>%
-  dplyr::select(-wave_exposure) %>% 
+  dplyr::select(-wave_exposure, -percent_boulder, -percent_cobble, -percent_pebble, -percent_granule, -percent_sand) %>% 
   mutate(across(
-    .cols = 5:19,          # columns beach_width through high_tide
+    .cols = 5:14,          # columns beach_width through high_tide
     .fns  = ~ if(is.numeric(.x)) as.numeric(scale(.x)) else .x))
 
 
-predictors <- names(wrack_scaled)[5:19]
+predictors <- names(wrack_scaled)[5:14]
 predictors
 
 # all subsets except empty model
@@ -23,9 +23,6 @@ is_collinear <- function(vars, df, threshold = 0.7) {
 
 non_collinear_sets <- keep(all_models, ~ !is_collinear(.x, wrack_scaled))
 length(non_collinear_sets)
-
-
-non_collinear_sets <- keep(non_collinear_sets, ~ length(.x) <= 5)
 
 
 library(purrr)
@@ -56,6 +53,6 @@ model_selection
 
 model_sel_df <- as.data.frame(model_selection)
 
-write_csv(model_sel_df, "temp/model_selection.csv")
+write_csv(model_sel_df, "temp/model_selection2.csv")
 
 
