@@ -104,7 +104,7 @@ f1_res = simulateResiduals(f1)
 plot(f1_res, rank = T)
 testDispersion(f1_res)
 
-r2(f1) #R squared values
+performance::r2(f1) #R squared values
 
 
 # Model F2: Intertidal Width + Wave Period ####
