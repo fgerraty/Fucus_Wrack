@@ -13,7 +13,13 @@ sites <- read_csv("data/processed/sites.csv")
 
 wrack_biomass <- read_csv("data/processed/wrack_biomass.csv") %>% 
   group_by(site, transect_number) %>% 
-  summarise(wrack_biomass = sum(biomass))
+  summarise(
+    wrack_biomass = sum(biomass, na.rm = TRUE),
+    macrocystis_biomass = sum(biomass[species == "Macrocystis pyrifera"], na.rm = TRUE),
+    zostera_biomass     = sum(biomass[species == "Zostera marina"], na.rm = TRUE),
+    prop_macrocystis = macrocystis_biomass / wrack_biomass,
+    prop_zostera = zostera_biomass / wrack_biomass,
+    .groups = "drop") 
   
 invertebrate_summary <- read_csv("data/processed/invertebrate_summary.csv") %>%
   rename(site = site_name) %>% 
@@ -30,6 +36,7 @@ wrack_inverts <- left_join(wrack_biomass, invertebrate_summary, by = c("site", "
   replace_na(list(invert_biomass = 0.0001)) %>% 
   mutate(log_wrack_biomass = log(wrack_biomass),
          log_invert_biomass = log(invert_biomass))
+        
 
 
 ##############################################################################
@@ -52,6 +59,34 @@ plot(h1_res, rank = T)
 testDispersion(h1_res)
 plotResiduals(h1_res, factor(wrack_inverts$site), xlab = "Site", main=NULL)
 
+
+# PART 2B: Wrack Biomass (log) vs Invert Biomass (log) + Prop Macrocystis + Prop Zostera  -----
+
+h2 <- lmer(log_invert_biomass ~ log_wrack_biomass + prop_macrocystis + prop_zostera + (1|site),
+           data = wrack_inverts)
+
+#Take a look at the model
+summary(h2)
+#Calculate R2 values
+MuMIn::r.squaredGLMM(h2)
+
+# Check h2 assumptions with DHARMa package
+h2_res = simulateResiduals(h2)
+plot(h2_res, rank = T)
+testDispersion(h2_res)
+plotResiduals(h2_res, factor(wrack_inverts$site), xlab = "Site", main=NULL)
+
+#Check collinearity with performance package (calculate VIF)
+check_collinearity(h2)
+
+
+#Compare AIC values of h1 and h2 
+AICc(h2)-AICc(h1)
+
+aictab(c(h1, h2))
+##############################################################################
+# PLOT ##############
+##############################################################################
 
 h1_plot_df1 <- wrack_inverts %>% 
   group_by(site) %>% 
