@@ -1,6 +1,6 @@
 # Data Dictionary
 
-F.D. Gerraty (2024). The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates. *In Review*
+Gerraty FD (2026). The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates. *Estuaries and Coasts*
 
 ------------------------------------------------------------------------
 
@@ -22,24 +22,24 @@ The "sites" dataset ([***data/processed/sites.csv***](https://github.com/fgerrat
 
 In addition to site/survey metadata, I quantified 16 static and dynamic environmental variables for each of 15 study sites (Table 1) that were combined into candidate models for predicting wrack biomass at the site level.
 
-| Parameter                        | Variable                               | Column Name     | Categories                | Source                   | Description                                                                                                                                                                        |
+| Parameter | Variable | Column Name | Categories | Source | Description |
 |------------|------------|------------|------------|------------|------------|
-| Donor Habitat                    | Beach Width                            | beach_width     | NA                        | Planet Satellite Imagery | Intertidal width (i.e. distance from high tide to low tide at approximately-.31m MLLW tide height) measured using Planet Imagery and QGIS (m)                                      |
-| Donor Habitat                    | Intertidal Extent (100m radius buffer) | x100m_buffer    | NA                        | Planet Satellite Imagery | Intertidal extent (i.e. cover of intertidal zone within a 100m radius buffer of survey site at approximately-.31m MLLW tide height) measured using Planet Imagery and QGIS (m\^2)  |
-| Donor Habitat                    | Intertidal Extent (200m radius buffer) | x200m_buffer    | NA                        | Planet Satellite Imagery | Intertidal extent (i.e. cover of intertidal zone within a 200m radius buffer of survey site at approximately -.31m MLLW tide height) measured using Planet Imagery and QGIS (m\^2) |
-| Biophysical Site Characteristics | Wave Exposure                          | wave_exposure   | Protected, Semi-protected | Alaska Shorezone         | "Biological wave exposure" for alaska shorezone unit associated with survey site                                                                                                   |
-| Biophysical Site Characteristics | Aspect                                 | aspect          | NA                        | Planet Satellite Imagery | Beach aspect measured using Planet Imagery and QGIS (º)                                                                                                                            |
-| Biophysical Site Characteristics | Slope                                  | slope_mean      | NA                        | Compass Commander        | Beach slope at 10 randomly placed points along the predominate wrack line measured using CommanderCompass IOS Application (º)                                                      |
-| Biophysical Site Characteristics | Boulder Percent Cover                  | percent_boulder | NA                        | Field Survey             | Percent cover of "boulder" substrate (i.e., grain size \> 256 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line                                            |
-| Biophysical Site Characteristics | Cobble Percent Cover                   | percent_cobble  | NA                        | Field Survey             | Percent cover of "cobble" substrate (i.e., grain size 64-256 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line                                             |
-| Biophysical Site Characteristics | Pebble Percent Cover                   | percent_pebble  | NA                        | Field Survey             | Percent cover of "pebble" substrate (i.e., grain size 4 - 64 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line                                             |
-| Biophysical Site Characteristics | Granule Percent Cover                  | percent_granule | NA                        | Field Survey             | Percent cover of "granule" substrate (i.e., grain size 2 - 4 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line                                             |
-| Biophysical Site Characteristics | Sand Percent Cover                     | percent_sand    | NA                        | Field Survey             | Percent cover of "sand" substrate (i.e., grain size 0.625 - 2 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line                                            |
-| Climate                          | Wind Direction                         | wind_direction  | NA                        | NOAA                     | Direction from which the wind is blowing at Edgecumb Buoy (ºTrue)                                                                                                                  |
-| Climate                          | Wind Speed                             | wind_speed      | NA                        | NOAA                     | Wind speed at Edgecumb Buoy (m/sec)                                                                                                                                                |
-| Climate                          | Wave Height                            | wave_height     | NA                        | NOAA                     | Wave height at Edgecumb Buoy (m)                                                                                                                                                   |
-| Climate                          | Wave Period                            | wave_period     | NA                        | NOAA                     | Wave period at Edgecumb Buoy (sec)                                                                                                                                                 |
-| Climate                          | High Tide                              | high_tide       | NA                        | NOAA                     | Height of the most recent high tide prior to survey (m) at Sitka Harbor Tide Station                                                                                               |
+| Donor Habitat | Beach Width | beach_width | NA | Planet Satellite Imagery | Intertidal width (i.e. distance from high tide to low tide at approximately-.31m MLLW tide height) measured using Planet Imagery and QGIS (m) |
+| Donor Habitat | Intertidal Extent (100m radius buffer) | x100m_buffer | NA | Planet Satellite Imagery | Intertidal extent (i.e. cover of intertidal zone within a 100m radius buffer of survey site at approximately-.31m MLLW tide height) measured using Planet Imagery and QGIS (m\^2) |
+| Donor Habitat | Intertidal Extent (200m radius buffer) | x200m_buffer | NA | Planet Satellite Imagery | Intertidal extent (i.e. cover of intertidal zone within a 200m radius buffer of survey site at approximately -.31m MLLW tide height) measured using Planet Imagery and QGIS (m\^2) |
+| Biophysical Site Characteristics | Wave Exposure | wave_exposure | Protected, Semi-protected | Alaska Shorezone | "Biological wave exposure" for alaska shorezone unit associated with survey site |
+| Biophysical Site Characteristics | Aspect | aspect | NA | Planet Satellite Imagery | Beach aspect measured using Planet Imagery and QGIS (º) |
+| Biophysical Site Characteristics | Slope | slope_mean | NA | Compass Commander | Beach slope at 10 randomly placed points along the predominate wrack line measured using CommanderCompass IOS Application (º) |
+| Biophysical Site Characteristics | Boulder Percent Cover | percent_boulder | NA | Field Survey | Percent cover of "boulder" substrate (i.e., grain size \> 256 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line |
+| Biophysical Site Characteristics | Cobble Percent Cover | percent_cobble | NA | Field Survey | Percent cover of "cobble" substrate (i.e., grain size 64-256 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line |
+| Biophysical Site Characteristics | Pebble Percent Cover | percent_pebble | NA | Field Survey | Percent cover of "pebble" substrate (i.e., grain size 4 - 64 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line |
+| Biophysical Site Characteristics | Granule Percent Cover | percent_granule | NA | Field Survey | Percent cover of "granule" substrate (i.e., grain size 2 - 4 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line |
+| Biophysical Site Characteristics | Sand Percent Cover | percent_sand | NA | Field Survey | Percent cover of "sand" substrate (i.e., grain size 0.625 - 2 mm) at 10 randomly placed 1m\^2 quadrats along the predominate wrack line |
+| Climate | Wind Direction | wind_direction | NA | NOAA | Direction from which the wind is blowing at Edgecumb Buoy (ºTrue) |
+| Climate | Wind Speed | wind_speed | NA | NOAA | Wind speed at Edgecumb Buoy (m/sec) |
+| Climate | Wave Height | wave_height | NA | NOAA | Wave height at Edgecumb Buoy (m) |
+| Climate | Wave Period | wave_period | NA | NOAA | Wave period at Edgecumb Buoy (sec) |
+| Climate | High Tide | high_tide | NA | NOAA | Height of the most recent high tide prior to survey (m) at Sitka Harbor Tide Station |
 
 Table 1. Environmental variables used to predict macrophyte wrack biomass.
 
