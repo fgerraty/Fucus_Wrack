@@ -2,7 +2,7 @@
 # Sitka Sound Wrack Project ##############################################
 # Author: Frankie Gerraty (frankiegerraty@gmail.com; fgerraty@ucsc.edu) ##
 ##########################################################################
-# Script 0X: Wrack vs. Invertebrate Analyses #############################
+# Script 03: Wrack vs. Invertebrate Analyses #############################
 #-------------------------------------------------------------------------
 
 ################################################
