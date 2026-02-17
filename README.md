@@ -2,6 +2,8 @@
 
 Gerraty FD (2026). The *Fucus* flow: Wide intertidal zones amplify rockweed wrack subsidies to shoreline invertebrates. *Estuaries and Coasts*
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18665510.svg)](https://doi.org/10.5281/zenodo.18665510)
+
 I examined the role of rockweed (*Fucus distichus*) as a spatial subsidy to gravel beach food webs in Sitka Sound, Southeast Alaska. Here, I provide an outline of my analyses and provide a description of the scripts and datasets associated with this repository.
 
 ------------------------------------------------------------------------
